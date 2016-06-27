@@ -1,0 +1,22 @@
+# Project Specific files #
+Data/PATSTAT
+Data/Patent_Grant_Full_Text_Data_SGML_Version_2.4_JAN_2001_DEC_2001
+Data/PATSTAT_Trial_2015Autumn_DOCDB_CSV
+Data/PATSTAT_Trial_2015Autumn_DOCDB_MsAccess
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.sgm
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+
+# Python Files #
+*.pyc
+*.ipynb_checkpoints
