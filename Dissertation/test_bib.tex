@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+\addbibresource{sample.bib}
+
+\begin{document}
+    Let's cite! The Einstein's journal paper \cite{einstein} and the Dirac's 
+    book \cite{dirac} are physics related items. 
+
+    \printbibliography
+
+\end{document}
