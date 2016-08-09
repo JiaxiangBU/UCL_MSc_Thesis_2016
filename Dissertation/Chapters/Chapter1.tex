@@ -14,15 +14,57 @@
 \newcommand{\option}[1]{\texttt{\itshape#1}}
 
 %----------------------------------------------------------------------------------------
-\section{Motivation and Background}
-%goals
+% Motivation and Background
+\section{The need for topic models}
 % - motivate topic models
+% data is big
+Researchers today are faced with a deluge of data. As we continue to digitize and aggregate our collective knowledge we produce ever increasing archives of information. The sheer volume and variety of forms this information may take - text, images, audio, video, social connections etc. - makes it difficult and in most cases impossible to parse manually. 
+
+% need better tool
+This driving factor of data growth has given rise to internet giants such as Google, who's search tool helps us access and browse pre-indexed swathes of information. However in order to go beyond mere keyword searches, or link analysis, and break into the realm of understanding each document we need a new approach to data exploration.
+
+% Topic modeling is that tool
+A powerful set of computational tools referred to as probabilistic topic models have emerged to meet this challenge. Aimed to discover and annotate large archives of documents with thematic information, topic models identify patterns that reflect the underlying topics which combined to form the documents.
+
+% it can do things unsupervised (so it can automate)
+Naturally, it is rare that we would know beforehand exactly what topics a given document contains, and thus topic modeling constitutes an unsupervised task. As a result, topic modeling algorithms are designed to work without prior knowledge of the topic distribution of a given document — that is, the topics are woven from texts themselves. This makes the organization, summarization and annotation of text corpora possible at an inhuman scale. Consequently, topic models are useful in a variety of settings and have successfully been applied to web archives, news articles \parencite{Newman:2006:AET:2106961.2106971}, and academic literature \parencite{Steyvers:2004:PAM:1014052.1014087} to elicit insight. In this paper, focus our experiments on patent data.
+% and thus is used in a bunch of stuff (mention patents)
 % - explain what they are used for nowadays
+
+
+%hidden/latent thematic structure in large archives of documents.
+%vast quantities of unstructured data
+%large databases of text
+%electronic document archives
+%collections of text
+
+%automatically organizing, searching, indexing, understanding and browsing large collections
+
+
+%----------------------------------------------------------------------------------------
+\section{Latent Dirichilet allocation}
 % - explain how they typically work (distribution over topics)
+LDA is a probabilistic model
+\begin{itemize}
+\item Documents can manifest multiple topics (however typically not many)
+\item Each document is assumed to be the product of a generative process.
+\item Generative process starts with a topic, i.e. a distribution over a fixed vocabulary.
+\item Assumes a fixed number of topics
+\end{itemize}
+its rather intuitive
+% include topic highlighted text as an example.
+
+%----------------------------------------------------------------------------------------
+\section{Adding a temporal component}
 % - describe how a dynamic model might improve on this
 % - describe the usefulness of having a temporal component in the model. (maybe give specific example documents)
+
+%----------------------------------------------------------------------------------------
+\section{Applying to Patents}
 % - reference why applying it to patents is not an accident. i.e. why patents provide an interesting use case.
 
+%----------------------------------------------------------------------------------------
+\section{Experiments}
 % What we explored:
 % - how the word distributions of the topics trended (validate 
 % with history)

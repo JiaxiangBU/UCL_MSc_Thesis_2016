@@ -28,45 +28,45 @@ Warning--I didn't find a database entry for "conf/icdm/AlSumaitBD08"
 Biblatex version: 3.0
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 9 entries,
+You've used 11 entries,
             6047 wiz_defined-function locations,
-            1216 strings with 10744 characters,
-and the built_in function-call counts, 32722 in all, are:
-= -- 1410
-> -- 1134
-< -- 358
-+ -- 444
-- -- 430
-* -- 2641
-:= -- 2068
+            1242 strings with 11668 characters,
+and the built_in function-call counts, 41273 in all, are:
+= -- 1813
+> -- 1386
+< -- 451
++ -- 548
+- -- 516
+* -- 3371
+:= -- 2537
 add.period$ -- 0
-call.type$ -- 9
-change.case$ -- 220
+call.type$ -- 11
+change.case$ -- 288
 chr.to.int$ -- 34
-cite$ -- 16
-duplicate$ -- 3516
-empty$ -- 3227
-format.name$ -- 673
-if$ -- 7448
+cite$ -- 20
+duplicate$ -- 4493
+empty$ -- 4100
+format.name$ -- 845
+if$ -- 9356
 int.to.chr$ -- 0
-int.to.str$ -- 25
+int.to.str$ -- 33
 missing$ -- 0
-newline$ -- 320
-num.names$ -- 483
-pop$ -- 2641
+newline$ -- 417
+num.names$ -- 621
+pop$ -- 3289
 preamble$ -- 1
-purify$ -- 252
+purify$ -- 328
 quote$ -- 0
-skip$ -- 1942
+skip$ -- 2411
 stack$ -- 0
-substring$ -- 1037
-swap$ -- 1277
-text.length$ -- 262
-text.prefix$ -- 8
+substring$ -- 1356
+swap$ -- 1660
+text.length$ -- 317
+text.prefix$ -- 10
 top$ -- 1
-type$ -- 330
+type$ -- 406
 warning$ -- 0
-while$ -- 205
+while$ -- 249
 width$ -- 0
-write$ -- 310
+write$ -- 405
 (There was 1 warning)

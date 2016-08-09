@@ -207,6 +207,56 @@
   \warn{\item Can't use 'location' + 'address'}
 \endentry
 
+\entry{Newman:2006:AET:2106961.2106971}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Newman}{N.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chemudugunta}{C.}%
+     {Chaitanya}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smyth}{S.}%
+     {Padhraic}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Steyvers}{S.}%
+     {Mark}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer-Verlag}%
+  }
+  \strng{namehash}{ND+1}
+  \strng{fullhash}{NDCCSPSM1}
+  \field{labelyear}{2006}
+  \field{sortinit}{N}
+  \field{booktitle}{Proceedings of the 4th IEEE International Conference on
+  Intelligence and Security Informatics}
+  \verb{doi}
+  \verb 10.1007/11760146_9
+  \endverb
+  \field{isbn}{3-540-34478-0, 978-3-540-34478-0}
+  \field{pages}{93\bibrangedash 104}
+  \field{series}{ISI'06}
+  \field{title}{Analyzing Entities and Topics in News Articles Using
+  Statistical Topic Models}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/11760146_9
+  \endverb
+  \list{location}{1}{%
+    {San Diego, CA}%
+  }
+  \field{year}{2006}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
 \entry{DBLP:journals/corr/RosnerHRNB14}{article}{}
   \name{author}{5}{}{%
     {{}%
@@ -246,6 +296,56 @@
   \field{volume}{abs/1403.6397}
   \field{journaltitle}{CoRR}
   \field{year}{2014}
+\endentry
+
+\entry{Steyvers:2004:PAM:1014052.1014087}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Steyvers}{S.}%
+     {Mark}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smyth}{S.}%
+     {Padhraic}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosen-Zvi}{R.-Z.}%
+     {Michal}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Griffiths}{G.}%
+     {Thomas}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{Gibbs sampling, text modeling, unsupervised learning}
+  \strng{namehash}{SM+1}
+  \strng{fullhash}{SMSPRZMGT1}
+  \field{labelyear}{2004}
+  \field{sortinit}{S}
+  \field{booktitle}{Proceedings of the Tenth ACM SIGKDD International
+  Conference on Knowledge Discovery and Data Mining}
+  \verb{doi}
+  \verb 10.1145/1014052.1014087
+  \endverb
+  \field{isbn}{1-58113-888-1}
+  \field{pages}{306\bibrangedash 315}
+  \field{series}{KDD '04}
+  \field{title}{Probabilistic Author-topic Models for Information Discovery}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1014052.1014087
+  \endverb
+  \list{location}{1}{%
+    {Seattle, WA, USA}%
+  }
+  \field{year}{2004}
+  \warn{\item Can't use 'location' + 'address'}
 \endentry
 
 \entry{DBLP:journals/corr/abs-1206-3298}{article}{}
