@@ -8,8 +8,6 @@ A level-1 auxiliary file: Chapters/Chapter3.aux
 A level-1 auxiliary file: Chapters/Chapter4.aux
 A level-1 auxiliary file: Chapters/Chapter5.aux
 A level-1 auxiliary file: Chapters/Chapter6.aux
-A level-1 auxiliary file: Chapters/Chapter7.aux
-A level-1 auxiliary file: Chapters/Chapter8.aux
 A level-1 auxiliary file: Appendices/AppendixA.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -24,49 +22,47 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: main-blx.bib
 Database file #2: thesis.bib
-Warning--I didn't find a database entry for "conf/icdm/AlSumaitBD08"
 Biblatex version: 3.0
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 11 entries,
+You've used 8 entries,
             6047 wiz_defined-function locations,
-            1242 strings with 11668 characters,
-and the built_in function-call counts, 41273 in all, are:
-= -- 1813
-> -- 1386
-< -- 451
-+ -- 548
-- -- 516
-* -- 3371
-:= -- 2537
+            1204 strings with 10430 characters,
+and the built_in function-call counts, 28451 in all, are:
+= -- 1253
+> -- 932
+< -- 298
++ -- 373
+- -- 338
+* -- 2254
+:= -- 1809
 add.period$ -- 0
-call.type$ -- 11
-change.case$ -- 288
+call.type$ -- 8
+change.case$ -- 195
 chr.to.int$ -- 34
-cite$ -- 20
-duplicate$ -- 4493
-empty$ -- 4100
-format.name$ -- 845
-if$ -- 9356
+cite$ -- 14
+duplicate$ -- 3107
+empty$ -- 2860
+format.name$ -- 575
+if$ -- 6431
 int.to.chr$ -- 0
-int.to.str$ -- 33
+int.to.str$ -- 22
 missing$ -- 0
-newline$ -- 417
-num.names$ -- 621
-pop$ -- 3289
+newline$ -- 293
+num.names$ -- 426
+pop$ -- 2323
 preamble$ -- 1
-purify$ -- 328
+purify$ -- 222
 quote$ -- 0
-skip$ -- 2411
+skip$ -- 1649
 stack$ -- 0
-substring$ -- 1356
-swap$ -- 1660
-text.length$ -- 317
-text.prefix$ -- 10
+substring$ -- 925
+swap$ -- 1125
+text.length$ -- 215
+text.prefix$ -- 7
 top$ -- 1
-type$ -- 406
+type$ -- 292
 warning$ -- 0
-while$ -- 249
+while$ -- 185
 width$ -- 0
-write$ -- 405
-(There was 1 warning)
+write$ -- 284

@@ -44,11 +44,15 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage{palatino} % Use the Palatino font by default
 
+\usepackage{amsmath}
+
 \usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 \addbibresource{thesis.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -78,13 +82,19 @@ headsepline, % Uncomment to get a line under the header
 \subject{Machine Learning} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 \university{\href{http://www.ucl.ac.uk/}{University College London}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{http://www.cs.ucl.ac.uk/degrees/msc_ml/}{UCL Computer Science}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
-\group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\department{\href{http://www.cs.ucl.ac.uk/degrees/msc_ml/}{UCL Dept. of Computer Science}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{{Machine Learning}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
 \faculty{\href{http://faculty.university.com}{Faculty Name}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+
+
+% stuff for drawing graphical models
+\usepackage{tikz}
+\usetikzlibrary{fit,positioning}
+
 
 \begin{document}
 
@@ -120,8 +130,9 @@ headsepline, % Uncomment to get a line under the header
 \end{minipage}\\[3cm]
  
 \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-\groupname\\\deptname\\[2cm] % Research group name and department name
+%\textit{in the}\\[0.4cm]
+\groupname\\
+\deptname\\[2cm] % Research group name and department name
  
 {\large \today}\\[4cm] % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
@@ -191,11 +202,7 @@ In this paper we evaluate the performance of a time varying family of LDA based 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 
-many people have helped either directly or indirectly
-my project supervisors Christopher Grainger and John Shawe-Taylor continued guidance throughout the project.
-colleauges for advice and discussion
-family for moral support
-to everyone, thank you
+I owe the completion of this project to the many people who have helped along the way, either directly or indirectly. To my project supervisors Christopher Grainger and Prof. John Shawe-Taylor for their continued guidance throughout the project, to my colleauges for their advice and discussion, and to my family for their moral support, I express my sincere gratitude, thank you.
 
 \end{acknowledgements}
 
@@ -273,8 +280,8 @@ to everyone, thank you
 \include{Chapters/Chapter4} 
 \include{Chapters/Chapter5} 
 \include{Chapters/Chapter6} 
-\include{Chapters/Chapter7} 
-\include{Chapters/Chapter8} 
+%\include{Chapters/Chapter7} 
+%\include{Chapters/Chapter8} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES

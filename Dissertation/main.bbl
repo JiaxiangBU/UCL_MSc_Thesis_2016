@@ -43,6 +43,33 @@
   \field{year}{2012}
 \endentry
 
+\entry{TopicModels2009}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Blei}{B.}%
+     {D.}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lafferty}{L.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {A. Srivastava}%
+    {M. Sahami, editors}%
+  }
+  \strng{namehash}{BDLJ1}
+  \strng{fullhash}{BDLJ1}
+  \field{labelyear}{2009}
+  \field{sortinit}{B}
+  \field{title}{Topic Models}
+  \field{journaltitle}{Text Mining: Theroy and Applications, Taylor and
+  Francis}
+  \field{year}{2009}
+\endentry
+
 \entry{Blei:2006:DTM:1143844.1143859}{inproceedings}{}
   \name{author}{2}{}{%
     {{}%
@@ -123,88 +150,6 @@
     {Vancouver, BC}%
   }
   \field{year}{2009}
-\endentry
-
-\entry{icml2010_GerrishB10}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Gerrish}{G.}%
-     {Sean}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Blei}{B.}%
-     {David~M.}{D.~M.}%
-     {}{}%
-     {}{}}%
-  }
-  \name{editor}{2}{}{%
-    {{}%
-     {Fürnkranz}{F.}%
-     {Johannes}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Joachims}{J.}%
-     {Thorsten}{T.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Omnipress}%
-  }
-  \strng{namehash}{GSBDM1}
-  \strng{fullhash}{GSBDM1}
-  \field{labelyear}{2010}
-  \field{sortinit}{G}
-  \field{booktitle}{Proceedings of the 27th International Conference on Machine
-  Learning (ICML-10)}
-  \field{pages}{375\bibrangedash 382}
-  \field{title}{A Language-based Approach to Measuring Scholarly Impact}
-  \verb{url}
-  \verb http://www.icml2010.org/papers/384.pdf
-  \endverb
-  \field{year}{2010}
-\endentry
-
-\entry{Hall:2008:SHI:1613715.1613763}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Hall}{H.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Jurafsky}{J.}%
-     {Daniel}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Manning}{M.}%
-     {Christopher~D.}{C.~D.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Association for Computational Linguistics}%
-  }
-  \strng{namehash}{HDJDMCD1}
-  \strng{fullhash}{HDJDMCD1}
-  \field{labelyear}{2008}
-  \field{sortinit}{H}
-  \field{booktitle}{Proceedings of the Conference on Empirical Methods in
-  Natural Language Processing}
-  \field{pages}{363\bibrangedash 371}
-  \field{series}{EMNLP '08}
-  \field{title}{Studying the History of Ideas Using Topic Models}
-  \verb{url}
-  \verb http://dl.acm.org/citation.cfm?id=1613715.1613763
-  \endverb
-  \list{location}{1}{%
-    {Honolulu, Hawaii}%
-  }
-  \field{year}{2008}
-  \warn{\item Can't use 'location' + 'address'}
 \endentry
 
 \entry{Newman:2006:AET:2106961.2106971}{inproceedings}{}
@@ -345,78 +290,6 @@
     {Seattle, WA, USA}%
   }
   \field{year}{2004}
-  \warn{\item Can't use 'location' + 'address'}
-\endentry
-
-\entry{DBLP:journals/corr/abs-1206-3298}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Wang}{W.}%
-     {Chong}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Blei}{B.}%
-     {David~M.}{D.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Heckerman}{H.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WCBDMHD1}
-  \strng{fullhash}{WCBDMHD1}
-  \field{labelyear}{2012}
-  \field{sortinit}{W}
-  \field{title}{Continuous Time Dynamic Topic Models}
-  \verb{url}
-  \verb http://arxiv.org/abs/1206.3298
-  \endverb
-  \field{volume}{abs/1206.3298}
-  \field{journaltitle}{CoRR}
-  \field{year}{2012}
-\endentry
-
-\entry{Wang:2006:TOT:1150402.1150450}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Wang}{W.}%
-     {Xuerui}{X.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {McCallum}{M.}%
-     {Andrew}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {ACM}%
-  }
-  \keyw{graphical models, temporal analysis, topic modeling}
-  \strng{namehash}{WXMA1}
-  \strng{fullhash}{WXMA1}
-  \field{labelyear}{2006}
-  \field{sortinit}{W}
-  \field{booktitle}{Proceedings of the 12th ACM SIGKDD International Conference
-  on Knowledge Discovery and Data Mining}
-  \verb{doi}
-  \verb 10.1145/1150402.1150450
-  \endverb
-  \field{isbn}{1-59593-339-5}
-  \field{pages}{424\bibrangedash 433}
-  \field{series}{KDD '06}
-  \field{title}{Topics over Time: A non-Markov Continuous-time Model of Topical
-  Trends}
-  \verb{url}
-  \verb http://doi.acm.org/10.1145/1150402.1150450
-  \endverb
-  \list{location}{1}{%
-    {Philadelphia, PA, USA}%
-  }
-  \field{year}{2006}
   \warn{\item Can't use 'location' + 'address'}
 \endentry
 
