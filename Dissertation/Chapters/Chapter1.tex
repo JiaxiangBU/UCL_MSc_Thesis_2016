@@ -27,7 +27,7 @@ This driving factor of data growth has given rise to internet giants such as Goo
 A powerful set of computational tools referred to as probabilistic topic models have emerged to meet this challenge. Aimed to discover and annotate large archives of documents with thematic information, topic models identify patterns that reflect the underlying topics which combined to form those documents.
 
 % it can do things unsupervised (so it can automate)
-Naturally, it is rare that we would know beforehand exactly what topics a given document contains, and thus topic modeling constitutes an unsupervised task. As a result, topic modeling algorithms are designed to work without prior knowledge of the topic distribution of a given document — that is, the topics are woven from the texts themselves. This makes the organization, summarization and annotation of text corpora possible at an inhuman scale. Consequently, topic models are useful in a variety of settings and have successfully been applied to web archives, news articles \parencite{Newman:2006:AET:2106961.2106971}, and academic literature \parencite{Steyvers:2004:PAM:1014052.1014087} to elicit insight. In this paper, we focus our experiments on patent data.
+Naturally, it is rare that we would know beforehand exactly what topics a given document contains, and thus topic modeling constitutes an unsupervised task. As a result, topic modeling algorithms are designed to work without prior knowledge of the topic distribution of a given document — that is, the topics are derived from the texts themselves. This makes the organization, summarization and annotation of text corpora possible at an inhuman scale. Consequently, topic models are useful in a variety of settings and have successfully been applied to web archives, news articles \parencite{Newman:2006:AET:2106961.2106971}, and academic literature \parencite{Steyvers:2004:PAM:1014052.1014087} to elicit insight. In this paper, we focus our experiments on patent data.
 % and thus is used in a bunch of stuff (mention patents)
 % - explain what they are used for nowadays
 
@@ -42,7 +42,7 @@ Naturally, it is rare that we would know beforehand exactly what topics a given 
 
 
 %----------------------------------------------------------------------------------------
-\section{Primer on Latent Dirichilet allocation}
+\section{Primer on Latent Dirichilet allocation} \label{ldaprimer}
 % - Intuitive explanation (distribution over topics)
 Fortunately, the intuition behind LDA topic models is relatively straight forward. To understand how the algorithm infers the topics in relation to documents we first define what constitutes a topic. A topic is a distribution over a fixed vocabulary, where each word has an assigned probability of occurrence. Subsequently, we can take the view that each document is likely a product of one or more topics, a cocktail of themes as it were with different proportions of each ingredient.
 
@@ -146,6 +146,20 @@ The DTM offers several advantages over traditional LDA including improved predic
 %high level quick overview of the math? Or save it for the DTM section...
 % DIDNT EVEN MENTION THE DIM!!!
 
+%---modeling influence------
+%\section{Modeling Influence}
+% influence measurements of scientific journals and articles help determine decisions about funding and publishing. Traditionally this is done using citations (Garfield 2002) with the intuition that if more people cite a work, it is likely to be more influential.
+
+% while scientific papers and in our case patents contain citations many texts don't such as news, blogs, legal documents.
+
+% all citations are also counted equally as having contributed to a work which is rarely the case.
+
+% new intuition that an influential paper will affect the language of subsequent related papers in a variable manner.
+
+% DIM is the sibling of DTM
+
+
+
 %----------------------------------------------------------------------------------------
 \section{Why patents?}
 % - reference why applying it to patents is not an accident. 
@@ -164,7 +178,7 @@ Dynamic topic models have the potential to aid this research by enabling us to t
 At the time of writing this, surprisingly little has been published exploring the effectiveness of both the DTM and the DIM. Much research has evaluated model quality solely based on the likelihood of held-out predictions, however this does not always translate to semantically meaningful topics \parencite{Chang:Boyd-Graber:Wang:Gerrish:Blei-2009}. Additionally, the predictive performance of these models is adversely affected by longer time horizons due to an "increase in the rate of specialization in scientific language" \parencite{Blei:2006:DTM:1143844.1143859}. Acknowledging the room to explore alternative methods of model evaluation, we implemented the experiments listed below. 
 
 \subsubsection{Historical Topic Trend Validation}
-The simplest, but also the most hands-on, method of evaluating the quality of topics produced by the DTM and DIM is simply to validate the inferred topic trends against industry history. For instance, if in the topic of water purification systems we observe a rise in the usage of words "2D materials" and "lattice membranes" around 2005, we might substantiate this by pointing out graphene's isolation the previous year in 2004.
+The simplest, but also the most hands-on, method of evaluating the quality of topics produced by the DTM and DIM is simply to validate the inferred topic trends against known industry history. For instance, if in the topic of water purification systems we observe a rise in the usage of words "2D materials" and "lattice membranes" around 2005, we might substantiate this by pointing out graphene's isolation the previous year in 2004.
  
 % Figure XXX contains examples of patents matching historical technological trends.
 

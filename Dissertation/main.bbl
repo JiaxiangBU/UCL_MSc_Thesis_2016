@@ -16,33 +16,6 @@
   {}
 \endgroup
 
-\entry{DBLP:journals/corr/abs-1203-3463}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Ahmed}{A.}%
-     {Amr}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Xing}{X.}%
-     {Eric~P.}{E.~P.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AAXEP1}
-  \strng{fullhash}{AAXEP1}
-  \field{labelyear}{2012}
-  \field{sortinit}{A}
-  \field{title}{Timeline: {A} Dynamic Hierarchical Dirichlet Process Model for
-  Recovering Birth/Death and Evolution of Topics in Text Stream}
-  \verb{url}
-  \verb http://arxiv.org/abs/1203.3463
-  \endverb
-  \field{volume}{abs/1203.3463}
-  \field{journaltitle}{CoRR}
-  \field{year}{2012}
-\endentry
-
 \entry{TopicModels2009}{article}{}
   \name{author}{2}{}{%
     {{}%
@@ -109,6 +82,94 @@
   \warn{\item Can't use 'location' + 'address'}
 \endentry
 
+\entry{Blei:2003:LDA:944919.944937}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Blei}{B.}%
+     {David~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ng}{N.}%
+     {Andrew~Y.}{A.~Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jordan}{J.}%
+     {Michael~I.}{M.~I.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {JMLR.org}%
+  }
+  \strng{namehash}{BDMNAYJMI1}
+  \strng{fullhash}{BDMNAYJMI1}
+  \field{labelyear}{2003}
+  \field{sortinit}{B}
+  \field{issn}{1532-4435}
+  \field{pages}{993\bibrangedash 1022}
+  \field{title}{Latent Dirichlet Allocation}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=944919.944937
+  \endverb
+  \field{volume}{3}
+  \field{journaltitle}{J. Mach. Learn. Res.}
+  \field{month}{03}
+  \field{year}{2003}
+\endentry
+
+\entry{Cai:2008:MHT:1458082.1458202}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Cai}{C.}%
+     {Deng}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mei}{M.}%
+     {Qiaozhu}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Han}{H.}%
+     {Jiawei}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhai}{Z.}%
+     {Chengxiang}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{document representation, generative model, manifold regularization,
+  probabilistic latent semantic indexing}
+  \strng{namehash}{CD+1}
+  \strng{fullhash}{CDMQHJZC1}
+  \field{labelyear}{2008}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of the 17th ACM Conference on Information and
+  Knowledge Management}
+  \verb{doi}
+  \verb 10.1145/1458082.1458202
+  \endverb
+  \field{isbn}{978-1-59593-991-3}
+  \field{pages}{911\bibrangedash 920}
+  \field{series}{CIKM '08}
+  \field{title}{Modeling Hidden Topics on Document Manifold}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1458082.1458202
+  \endverb
+  \list{location}{1}{%
+    {Napa Valley, California, USA}%
+  }
+  \field{year}{2008}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
 \entry{Chang:Boyd-Graber:Wang:Gerrish:Blei-2009}{inproceedings}{}
   \name{author}{5}{}{%
     {{}%
@@ -150,6 +211,350 @@
     {Vancouver, BC}%
   }
   \field{year}{2009}
+\endentry
+
+\entry{griffiths_steyvers04}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Griffiths}{G.}%
+     {T.~L.}{T.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Steyvers}{S.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{gibbs lda models sampling topic}
+  \strng{namehash}{GTLSM1}
+  \strng{fullhash}{GTLSM1}
+  \field{labelyear}{2004}
+  \field{sortinit}{G}
+  \field{number}{Suppl. 1}
+  \field{pages}{5228\bibrangedash 5235}
+  \field{title}{Finding scientific topics}
+  \field{volume}{101}
+  \field{journaltitle}{Proceedings of the National Academy of Sciences}
+  \field{year}{2004}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Hubert1985}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hubert}{H.}%
+     {Lawrence}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Arabie}{A.}%
+     {Phipps}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HLAP1}
+  \strng{fullhash}{HLAP1}
+  \field{labelyear}{1985}
+  \field{sortinit}{H}
+  \verb{doi}
+  \verb 10.1007/BF01908075
+  \endverb
+  \field{issn}{1432-1343}
+  \field{number}{1}
+  \field{pages}{193\bibrangedash 218}
+  \field{title}{Comparing partitions}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/BF01908075
+  \endverb
+  \field{volume}{2}
+  \field{journaltitle}{Journal of Classification}
+  \field{year}{1985}
+\endentry
+
+\entry{Kumar2013}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Kumar}{K.}%
+     {R.~V.}{R.~V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Raghuveer}{R.}%
+     {K.}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{LDA law}
+  \strng{namehash}{KRVRK1}
+  \strng{fullhash}{KRVRK1}
+  \field{labelyear}{2013}
+  \field{sortinit}{K}
+  \field{abstract}{%
+  doi=10.11591/ij-ai.v2i1.1186%
+  }
+  \field{number}{2}
+  \field{pages}{27\bibrangedash 35}
+  \field{title}{Legal Documents Clustering and Summarization using Hierarchical
+  Latent Dirichlet Allocation}
+  \verb{url}
+  \verb http://dx.doi.org/10.11591/ij-ai.v2i1.1186
+  \endverb
+  \field{volume}{1}
+  \field{journaltitle}{IAES International Journal of Artificial Intelligence}
+  \field{year}{2013}
+\endentry
+
+\entry{liempirical}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Li}{L.}%
+     {Lei}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {Yimeng}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LLZY1}
+  \strng{fullhash}{LLZY1}
+  \field{labelyear}{2010}
+  \field{sortinit}{L}
+  \field{title}{An empirical study of text classification using Latent
+  Dirichlet Allocation}
+  \field{year}{2010}
+\endentry
+
+\entry{Lu:2011:ITP:1969504.1969510}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Lu}{L.}%
+     {Yue}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mei}{M.}%
+     {Qiaozhu}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhai}{Z.}%
+     {Chengxiang}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Kluwer Academic Publishers}%
+  }
+  \keyw{Evaluation, Experimentation, LDA, PLSA, Performance, Topic models}
+  \strng{namehash}{LYMQZC1}
+  \strng{fullhash}{LYMQZC1}
+  \field{labelyear}{2011}
+  \field{sortinit}{L}
+  \verb{doi}
+  \verb 10.1007/s10791-010-9141-9
+  \endverb
+  \field{issn}{1386-4564}
+  \field{number}{2}
+  \field{pages}{178\bibrangedash 203}
+  \field{title}{Investigating Task Performance of Probabilistic Topic Models:
+  An Empirical Study of PLSA and LDA}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s10791-010-9141-9
+  \endverb
+  \field{volume}{14}
+  \list{location}{1}{%
+    {Hingham, MA, USA}%
+  }
+  \field{journaltitle}{Inf. Retr.}
+  \field{month}{04}
+  \field{year}{2011}
+\endentry
+
+\entry{Mei:2007:ALM:1281192.1281246}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Mei}{M.}%
+     {Qiaozhu}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shen}{S.}%
+     {Xuehua}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhai}{Z.}%
+     {ChengXiang}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{multinomial distribution, statistical topic models, topic model
+  labeling}
+  \strng{namehash}{MQSXZC1}
+  \strng{fullhash}{MQSXZC1}
+  \field{labelyear}{2007}
+  \field{sortinit}{M}
+  \field{booktitle}{Proceedings of the 13th ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}
+  \verb{doi}
+  \verb 10.1145/1281192.1281246
+  \endverb
+  \field{isbn}{978-1-59593-609-7}
+  \field{pages}{490\bibrangedash 499}
+  \field{series}{KDD '07}
+  \field{title}{Automatic Labeling of Multinomial Topic Models}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1281192.1281246
+  \endverb
+  \list{location}{1}{%
+    {San Jose, California, USA}%
+  }
+  \field{year}{2007}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{Mimno:2011:OSC:2145432.2145462}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Mimno}{M.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wallach}{W.}%
+     {Hanna~M.}{H.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Talley}{T.}%
+     {Edmund}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Leenders}{L.}%
+     {Miriam}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {McCallum}{M.}%
+     {Andrew}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Association for Computational Linguistics}%
+  }
+  \strng{namehash}{MD+1}
+  \strng{fullhash}{MDWHMTELMMA1}
+  \field{labelyear}{2011}
+  \field{sortinit}{M}
+  \field{booktitle}{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing}
+  \field{isbn}{978-1-937284-11-4}
+  \field{pages}{262\bibrangedash 272}
+  \field{series}{EMNLP '11}
+  \field{title}{Optimizing Semantic Coherence in Topic Models}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=2145432.2145462
+  \endverb
+  \list{location}{1}{%
+    {Edinburgh, United Kingdom}%
+  }
+  \field{year}{2011}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{Nagwani2015}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Nagwani}{N.}%
+     {N.~K.}{N.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{NNK1}
+  \strng{fullhash}{NNK1}
+  \field{labelyear}{2015}
+  \field{sortinit}{N}
+  \verb{doi}
+  \verb 10.1186/s40537-015-0020-5
+  \endverb
+  \field{issn}{2196-1115}
+  \field{number}{1}
+  \field{pages}{1\bibrangedash 18}
+  \field{title}{Summarizing large text collection using topic modeling and
+  clustering based on MapReduce framework}
+  \verb{url}
+  \verb http://dx.doi.org/10.1186/s40537-015-0020-5
+  \endverb
+  \field{volume}{2}
+  \field{journaltitle}{Journal of Big Data}
+  \field{year}{2015}
+\endentry
+
+\entry{NewmanBB11}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Newman}{N.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bonilla}{B.}%
+     {Edwin~V.}{E.~V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Buntine}{B.}%
+     {Wray~L.}{W.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{5}{}{%
+    {{}%
+     {Shawe-Taylor}{S.-T.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zemel}{Z.}%
+     {Richard~S.}{R.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bartlett}{B.}%
+     {Peter~L.}{P.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pereira}{P.}%
+     {Fernando C.~N.}{F.~C.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Weinberger}{W.}%
+     {Kilian~Q.}{K.~Q.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{dblp}
+  \strng{namehash}{NDBEVBWL1}
+  \strng{fullhash}{NDBEVBWL1}
+  \field{labelyear}{2011}
+  \field{sortinit}{N}
+  \field{booktitle}{NIPS}
+  \field{pages}{496\bibrangedash 504}
+  \field{title}{Improving Topic Coherence with Regularized Topic Models.}
+  \verb{url}
+  \verb http://dblp.uni-trier.de/db/conf/nips/nips2011.html#NewmanBB11
+  \endverb
+  \field{year}{2011}
 \endentry
 
 \entry{Newman:2006:AET:2106961.2106971}{inproceedings}{}
@@ -199,6 +604,51 @@
     {San Diego, CA}%
   }
   \field{year}{2006}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{Roder:2015:EST:2684822.2685324}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {R\"{o}der}{R.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Both}{B.}%
+     {Andreas}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hinneburg}{H.}%
+     {Alexander}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{topic coherence, topic evaluation, topic model}
+  \strng{namehash}{RMBAHA1}
+  \strng{fullhash}{RMBAHA1}
+  \field{labelyear}{2015}
+  \field{sortinit}{R}
+  \field{booktitle}{Proceedings of the Eighth ACM International Conference on
+  Web Search and Data Mining}
+  \verb{doi}
+  \verb 10.1145/2684822.2685324
+  \endverb
+  \field{isbn}{978-1-4503-3317-7}
+  \field{pages}{399\bibrangedash 408}
+  \field{series}{WSDM '15}
+  \field{title}{Exploring the Space of Topic Coherence Measures}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/2684822.2685324
+  \endverb
+  \list{location}{1}{%
+    {Shanghai, China}%
+  }
+  \field{year}{2015}
   \warn{\item Can't use 'location' + 'address'}
 \endentry
 
@@ -290,6 +740,171 @@
     {Seattle, WA, USA}%
   }
   \field{year}{2004}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{wallach-murray-rsalakhu-mimno-2009}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Wallach}{W.}%
+     {Hanna~M.}{H.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murray}{M.}%
+     {Iain}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Salakhutdinov}{S.}%
+     {Ruslan}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mimno}{M.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{2}{}{%
+    {{}%
+     {Bottou}{B.}%
+     {L\'{e}on}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Littman}{L.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Omnipress}%
+  }
+  \strng{namehash}{WHM+1}
+  \strng{fullhash}{WHMMISRMD1}
+  \field{labelyear}{2009}
+  \field{sortinit}{W}
+  \field{booktitle}{Proceedings of the 26th International Conference on Machine
+  Learning (ICML)}
+  \field{pages}{1105\bibrangedash 1112}
+  \field{title}{Evaluation Methods for Topic Models}
+  \list{location}{1}{%
+    {Montreal}%
+  }
+  \field{year}{2009}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Wei:2006:LDM:1148170.1148204}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Wei}{W.}%
+     {Xing}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Croft}{C.}%
+     {W.~Bruce}{W.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{document model, information retrieval, language model, latent dirichlet
+  allocation (LDA), topic model}
+  \strng{namehash}{WXCWB1}
+  \strng{fullhash}{WXCWB1}
+  \field{labelyear}{2006}
+  \field{sortinit}{W}
+  \field{booktitle}{Proceedings of the 29th Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval}
+  \verb{doi}
+  \verb 10.1145/1148170.1148204
+  \endverb
+  \field{isbn}{1-59593-369-7}
+  \field{pages}{178\bibrangedash 185}
+  \field{series}{SIGIR '06}
+  \field{title}{LDA-based Document Models for Ad-hoc Retrieval}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1148170.1148204
+  \endverb
+  \list{location}{1}{%
+    {Seattle, Washington, USA}%
+  }
+  \field{year}{2006}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{DBLP:journals/corr/XieX13}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Xie}{X.}%
+     {Pengtao}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xing}{X.}%
+     {Eric~P.}{E.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{XPXEP1}
+  \strng{fullhash}{XPXEP1}
+  \field{labelyear}{2013}
+  \field{sortinit}{X}
+  \field{title}{Integrating Document Clustering and Topic Modeling}
+  \verb{url}
+  \verb http://arxiv.org/abs/1309.6874
+  \endverb
+  \field{volume}{abs/1309.6874}
+  \field{journaltitle}{CoRR}
+  \field{year}{2013}
+\endentry
+
+\entry{Xu:2003:DCB:860435.860485}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Xu}{X.}%
+     {Wei}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Xin}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gong}{G.}%
+     {Yihong}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{document clustering, non-negative matrix factorization}
+  \strng{namehash}{XWLXGY1}
+  \strng{fullhash}{XWLXGY1}
+  \field{labelyear}{2003}
+  \field{sortinit}{X}
+  \field{booktitle}{Proceedings of the 26th Annual International ACM SIGIR
+  Conference on Research and Development in Informaion Retrieval}
+  \verb{doi}
+  \verb 10.1145/860435.860485
+  \endverb
+  \field{isbn}{1-58113-646-3}
+  \field{pages}{267\bibrangedash 273}
+  \field{series}{SIGIR '03}
+  \field{title}{Document Clustering Based on Non-negative Matrix Factorization}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/860435.860485
+  \endverb
+  \list{location}{1}{%
+    {Toronto, Canada}%
+  }
+  \field{year}{2003}
   \warn{\item Can't use 'location' + 'address'}
 \endentry
 
