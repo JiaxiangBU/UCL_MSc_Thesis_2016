@@ -1,9 +1,8 @@
 % Chapter 1
 
-\chapter{Introduction to the Thesis Topic} % Main chapter title
+\chapter{Introduction} % Main chapter title
 
 \label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
-
 %----------------------------------------------------------------------------------------
 
 % Define some commands to keep the formatting separated from the content 
@@ -13,6 +12,7 @@
 \newcommand{\file}[1]{\texttt{\bfseries#1}}
 \newcommand{\option}[1]{\texttt{\itshape#1}}
 
+
 %----------------------------------------------------------------------------------------
 % Motivation and Background
 \section{The need for topic models}
@@ -21,24 +21,21 @@
 Researchers today are faced with a deluge of data. As we continue to digitize and aggregate our collective knowledge we produce ever increasing archives of information. The sheer volume and variety of forms this information may take - text, images, audio, video, social connections etc. - makes it difficult and in most cases impossible to parse manually. 
 
 % need better tool
-This driving factor of data growth has given rise to internet giants such as Google, who's search tool helps us access and browse pre-indexed swathes of information. However in order to go beyond mere keyword searches, or link analysis, and break into the realm of understanding each document, requires a new approach to data exploration.
+This driving factor of data growth has given rise to internet giants such as Google, Yahoo, and Bidu that help us access and browse pre-indexed swathes of information. However in order to go beyond mere keyword searches, or link analysis, and break into the realm of understanding each document, requires a new approach to data exploration.
 
 % Topic modeling is that tool
 A powerful set of computational tools referred to as probabilistic topic models have emerged to meet this challenge. Aimed to discover and annotate large archives of documents with thematic information, topic models identify patterns that reflect the underlying topics which combined to form those documents.
 
 % it can do things unsupervised (so it can automate)
-Naturally, it is rare that we would know beforehand exactly what topics a given document contains, and thus topic modeling constitutes an unsupervised task. As a result, topic modeling algorithms are designed to work without prior knowledge of the topic distribution of a given document — that is, the topics are derived from the texts themselves. This makes the organization, summarization and annotation of text corpora possible at an inhuman scale. Consequently, topic models are useful in a variety of settings and have successfully been applied to web archives, news articles \parencite{Newman:2006:AET:2106961.2106971}, and academic literature \parencite{Steyvers:2004:PAM:1014052.1014087} to elicit insight. In this paper, we focus our experiments on patent data.
-% and thus is used in a bunch of stuff (mention patents)
-% - explain what they are used for nowadays
+Naturally, it is rare that we would know beforehand exactly what topics a given document contains, and thus topic modeling constitutes an unsupervised task. As a result, topic modeling algorithms are designed to work without prior knowledge of the topic distribution of a given document — that is, the topics are derived from the texts themselves. This makes the organization, summarization and annotation of text corpora possible at an inhuman scale. Consequently, topic models are useful in a variety of settings and have successfully been applied to web archives, news articles \parencite{Newman:2006:AET:2106961.2106971}, and academic literature \parencite{Steyvers:2004:PAM:1014052.1014087} to elicit insight. In this paper, we focus our experiments on extracting topics from patent data with the hopes identifying meaningful trends in renewable energy technologies. 
 
+% we use patent data because they offer a rich corpus of science and engineering, ebcause patents show how innovation has progressed. Extracting topics will be meaningful.
 
 %hidden/latent thematic structure in large archives of documents.
 %vast quantities of unstructured data
 %large databases of text
 %electronic document archives
 %collections of text
-
-%automatically organizing, searching, indexing, understanding and browsing large collections
 
 
 %----------------------------------------------------------------------------------------
@@ -59,7 +56,7 @@ Take for example the following document sampled from the August 2015 EPO Worldwi
 \label{fig:Patent_114}
 \end{figure}
 
-The topics in the previous example were formed not over a single document but over a collection. The grey sections of the pie chart above represent the topics that this patent does not contain strong elements of. This is a key characteristic of LDA topic models, each document has a unique topic 'fingerprint' as a result of a generative process. That process for generating a document word by word is as follows. First we decide, sampling from the distribution of topics, which topic the word will belong to. Then we sample from that topic's distribution to decide what the word itself will be. This process is then simply repeated for each word, and while it works it has the following assumptions:
+The topics in the previous example were formed not over a single document but over a collection. The grey sections of the pie chart above represent the topics that this patent does not contain strong elements of. This is a key characteristic of LDA topic models, each document has a unique topic 'fingerprint' as a result of a generative process. That process for generating a document word by word is as follows. First we decide, sampling from the distribution of topics, which topic our first word will belong to. Then we sample from that chosen topic's distribution to decide what the word itself will be. This process is then simply repeated for each word, and while it works it has the following assumptions worth noting:
 
 % assumptions
 \begin{itemize}
@@ -70,18 +67,18 @@ The topics in the previous example were formed not over a single document but ov
 \end{itemize}
 
 % math framework.
-Latent Dirichilet allocation falls into a family of machine learning algorithms called \keyword{hidden variable models}.  In this family of models, customarily the user "posits a hidden structure in the observed data, and then learns that structure using posterior probabilistic inference" \parencite{TopicModels2009}. For LDA specifically, the documents are the observed data, the topics and document topic proportions are hidden.
+Latent Dirichilet allocation falls into a family of machine learning algorithms called \keyword{hidden variable models}.  In this family of models, the user customarily "posits a hidden structure in the observed data, and then learns that structure using posterior probabilistic inference" \parencite{TopicModels2009}. For LDA specifically, the documents are the observed data, the topics and document topic proportions are hidden.
 
-More formally, we may define this process mathematically as a joint distribution over our hidden variables and our observed variables. Namely the distribution over vocabulary $\beta$, the topic proportions for document d $\theta_d$ , the topic assignment for a word in a document $T_{d,n}$ and of course the observed words themselves $w_{d,n}$. 
+More formally, we may define this process mathematically as a joint distribution over our hidden variables and our observed variables. Specifically, we define the distribution over vocabulary as $\beta$, the topic proportions for document d $\theta_d$, the topic assignment for a word in a document $z_{d,n}$ and of course the observed words themselves $w_{d,n}$. 
 
 \begin{align*}
-  & P(\beta_{1:K},\theta_{1:D},T_{1:D},W_{1:D}) \nonumber \\
+  & P(\beta_{1:K},\theta_{1:D},z_{1:D},W_{1:D}) \nonumber \\
   & = \prod_{i=1}^K p(\beta_i) 
   \prod_{d=1}^D p(\theta_d)
-  \{ \prod_{n=1}^N p(T_{d,n}|\theta_d)p(w_{d,n}|\beta_{1:k},T_{d,n}) \} \numberthis \label{eq:JointProb} 
+  \{ \prod_{n=1}^N p(z_{d,n}|\theta_d)p(w_{d,n}|\beta_{1:k},z_{d,n}) \} \numberthis \label{eq:JointProb} 
 \end{align*}
 
-In Eq \ref{eq:JointProb} we see a few dependencies worth noting. Firstly that the topic we assign to a word $T_{d,n}$ depends on the distribution of topics of its document $\theta_d$. Additionally, that the identity of the word itself is dependent on not only the topic we assigned to generate it $T_{d,n}$, but also the vocabulary distributions of each topic $\beta_{1:K}$. Equivalently we can express the dependencies between these variables as a graphical model, illustrated in figure \ref{fig:Gmod1}.
+In Eq \ref{eq:JointProb} we see a few dependencies worth noting. Firstly that the topic we assign to a word $z_{d,n}$ depends on the distribution of topics of its document $\theta_d$. Additionally, that the identity of the word itself is dependent on not only the topic we assigned to generate it $z_{d,n}$, but also the vocabulary distributions of each topic $\beta_{1:K}$. Equivalently we can express the dependencies between these variables as a graphical model, illustrated in figure \ref{fig:Gmod1}.
 
 \begin{figure}[ht]
 \centering
@@ -167,7 +164,7 @@ The DTM offers several advantages over traditional LDA including improved predic
 Patent data is specifically interesting in this context because of the role patents play in company formation, job growth, economic development, and novel invention. Their history tells a story of technological progression. In an attempt to maintain a competitive edge, many companies large and small spend a considerable amount of energy researching this history to identify technical trends relevant to their industry. 
 
 % what's even more cool, is applying that DTM to patent data. we can effectively track the progression of innovation through language use in patent abstracts. 
-Dynamic topic models have the potential to aid this research by enabling us to track the progression of innovation through language use in patent abstracts. In this paper we look at a number of elements, including the evolution of technological themes and their proportions, the origination and progression of language, as well as document influences. Furthermore, the patent corpus and associated International Patent Classification (\keyword{IPC}) labels provide a platform for the comparison of various topic modeling algorithms.
+Dynamic topic models have the potential to aid this research by enabling us to track the evolution of innovation through language use in patent abstracts. In this paper we look at a number of elements, including the evolution of technological themes and their proportions, the origination and development of language, as well as document influences. Furthermore, the patent corpus and associated International Patent Classification (\keyword{IPC}) labels provide a platform for the comparison of various topic modeling algorithms.
 
 %research into new products or industries does not occur in a vacuum. 
 
@@ -175,7 +172,7 @@ Dynamic topic models have the potential to aid this research by enabling us to t
 \section{Experiments}
 % So, now that you know what LDA is, why it's important, what the DTM is and how we're applying it, here's what we tried out and what we were looking for.  Maybe give some intuition. (insufficiencies in previous methods of testing)
 
-At the time of writing this, surprisingly little has been published exploring the effectiveness of both the DTM and the DIM. Much research has evaluated model quality solely based on the likelihood of held-out predictions, however this does not always translate to semantically meaningful topics \parencite{Chang:Boyd-Graber:Wang:Gerrish:Blei-2009}. Additionally, the predictive performance of these models is adversely affected by longer time horizons due to an "increase in the rate of specialization in scientific language" \parencite{Blei:2006:DTM:1143844.1143859}. Acknowledging the room to explore alternative methods of model evaluation, we implemented the experiments listed below. 
+At the time of writing this, surprisingly little has been published exploring the effectiveness of both the DTM and the DIM. Much research has evaluated model quality solely based on the likelihood of held-out predictions, however likelihood does not always translate to semantically meaningful topics \parencite{Chang:Boyd-Graber:Wang:Gerrish:Blei-2009}. Additionally, the predictive performance of these models is adversely affected by longer time horizons due to an "increase in the rate of specialization in scientific language" \parencite{Blei:2006:DTM:1143844.1143859}. Acknowledging the room to explore alternative methods of model evaluation, we implemented the experiments listed below. 
 
 \subsubsection{Historical Topic Trend Validation}
 The simplest, but also the most hands-on, method of evaluating the quality of topics produced by the DTM and DIM is simply to validate the inferred topic trends against known industry history. For instance, if in the topic of water purification systems we observe a rise in the usage of words "2D materials" and "lattice membranes" around 2005, we might substantiate this by pointing out graphene's isolation the previous year in 2004.
@@ -187,7 +184,7 @@ In light of research suggesting that likelihoods and perplexity don't always cor
 
 
 \subsection{Classification}
-Unsupervisedly learned word vectors have demonstrated useful as features in a myriad of NLP tasks. We wished to evaluate the proficiency of the word vectors generated by the DTM and DIM at creating an effective feature space for text categorization. To do this we made use of the IPC labels of patents as broad class labels for text content. The resulting topic vectors should then help identify which class a document belongs to. Naturally we tested the efficacy of each model's vector space at correctly classifying the IPC label of documents when fed to a range of classification algorithms. Peak classification performance of the DTM based classifiers was F1 XXX, while LDA was F1 YYY. Text classification results are given in section ZZZ.
+We wished to evaluate the proficiency of the word vectors unsupervisedly generated by the DTM and DIM at forming an effective feature space for document categorization. To do this we made use of the IPC labels of patents as broad class labels for text content. The resulting topic vectors should then help identify which class a document belongs to. Naturally we tested the efficacy of each model's vector space at correctly classifying the IPC label of documents when fed to a range of classification algorithms. Peak classification performance of the DTM based classifiers was F1 XXX, while LDA was F1 YYY. Text classification results are given in section ZZZ.
 %DTM outperformed LDA by an average of XXX percent. Results in Table YYY.
 
 %text categorization
@@ -199,7 +196,7 @@ Unsupervisedly learned word vectors have demonstrated useful as features in a my
 
 
 \subsection{Clustering}
-Another method by which we evaluated the quality of the resulting document vectors was by their ability to define separations in the data relative to the ground truth CPC labels. In order to asses which models yielded vector spaces of the corpus that most effectively clustered the documents we used the following metrics: the adjusted rand index, normalized mutual score info, homogeneity, completeness and the V-measure. Indeed we found that the DTM's vector space tended to outperform that of LDA at clustering with a peak NMI score of XXX compared to YYY. For more detailed results, refer to table ZZZ in section 5. 
+Another method we used to evaluate the quality of the resulting document vectors was by their ability to cluster the documents. In order to determine which models yielded vector spaces of the corpus that most effectively defined separations in the data relative to the ground truth CPC labels we used the following metrics: the adjusted rand index, normalized mutual score info, homogeneity, completeness and the V-measure which we cover in section \ref{litreview}. Indeed we found that the DTM's vector space tended to outperform that of LDA at clustering with a peak NMI score of XXX compared to YYY. For more detailed results, refer to table ZZZ in section 5. 
 
 
 %\subsection{Influence Estimation}
@@ -209,6 +206,10 @@ Another method by which we evaluated the quality of the resulting document vecto
 
 % - If you believe all of these things you should give me a distinction. If not, read on...
 
+\section{Roadmap of Paper}
+% roadmap
+The overall structure of this paper is as follows. In \textbf{chapter \ref{Chapter2}} we review the literature surrounding the applications and various evaluation methods for topic models,  and also give a detailed account of both the DTM and DIM.
+Then in \textbf{Chapter \ref{Chapter3}} we cover the experimental set up and considerations in data preparation. The results of our experiments are subsequently presented in \textbf{Chapter \ref{Chapter4}}, and finally we conclude in \textbf{Chapter \ref{Chapter5}} with a discussion of results and suggestions for future study.
 
 %----------------------------------------------------------------------------------------
 

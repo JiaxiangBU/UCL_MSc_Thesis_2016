@@ -1,12 +1,10 @@
 % Chapter 2
-
-\chapter{Background Information and Theory} % Main chapter title
-
-\label{Chapter2} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+\chapter{Background Information and Theory} 
+\label{Chapter2} 
 
 
 %----------------------------------------------------------------------------------------
-\section{Literature Review}
+\section{Literature Review} \label{litreview}
 % literature review is a paper or article you might sit down to read that gives a general overview of a field. someone not experienced in topic modelling should come a way with a greater understanding of topic models after reading it. And be ready to understand more of your project. 
 % explain here what we are going to cover in the literature review.
 
@@ -60,8 +58,44 @@ Two more noteworthy measures of topic coherence, in addition to those outlined a
 %------Text Classification---------
 Though the topics produced by topic models are useful in their own right for the qualitative analysis of documents, they are also useful quantitatively when trying to classify documents. For instance a large news organization may want to automatically sort its thousands of articles into the categories "politics", "natural disasters" and "sports". To do this they might use a topic model to get a vector of topic proportions for each document to use as features for a classification algorithm. This process is referred to as document vectorization.
 
-A commonly used baseline for document vectorization is the Term Frequency Inverse Document Frequency (tf-idf) algorithm, prevalent in information retrieval. However it has been shown that in situations where less training data is available LDA outperforms models such as tf-idf, boasting a shorter training time and higher classification accuracy \parencite{liempirical}. Additionally when tested against other baseline methods for document vectorization such as the unigram model or probabilistic latent semantic analysis (PLSA), LDA again proved consistenlty more accurate at document classification tasks \parencite{Lu:2011:ITP:1969504.1969510}. 
+% could use tfidf but LDA is sometimes better
+While baseline methods for document vectorization exist, such as the Term Frequency Inverse Document Frequency (tf-idf), LDA has been shown to outperform them in certain scenarios. For instance when less training data is available LDA boasted a shorter training time and higher classification accuracy  \parencite{liempirical}. Additionally when tested against other baseline methods for document vectorization such as the unigram model or probabilistic latent semantic analysis (PLSA), LDA again proved consistenlty more accurate at document classification tasks \parencite{Lu:2011:ITP:1969504.1969510}. 
 
+\subsubsection{Accuracy}
+When it comes time to evaluate a model's classification performance there are several approaches, the most intuitive of which is accuracy. Accuracy is defined as  
+
+\begin{align*}
+acc = \frac{Tp + Tn}{Tp + Tn +Fp + Fn}
+ \numberthis \label{eq:acc} 
+\end{align*}
+
+Where $Tp$ are our true positives, $Tn$ are our true negatives, $Fp$ are our false positives, and $Fn$ are our false negatives. It should be noted that normal values of accuracy for classification tasks depend highly on the data at hand. Noisy data or a large number of classes can both artificially drive accuracy scores down. 
+
+\subsubsection{Precision}
+But what if we want to know, out of the total number of guesses for a particular class, what fraction were correct? For this, researchers typically use the Precision, defined as
+
+\begin{align*}
+p = \frac{Tp}{Tp + Fp}
+ \numberthis \label{eq:precision} 
+\end{align*}
+
+\subsubsection{Recall}
+Conversely, if we wish to know out of the total number of cases we could have guessed correctly, what fraction we \emph{did} guess correctly then Recall is typically used. Recall is defined as
+
+\begin{align*}
+r = \frac{Tp}{Tp + Fn}
+ \numberthis \label{eq:recall} 
+\end{align*}
+
+\subsubsection{F1 Score}
+The F1 score is a way of combining the above two metrics Precision and Recall into one wholistic measure. Conceptually it is the harmonic mean of the Precision and Recall where we assign even weights to each. The F1 score is defined as
+
+
+\begin{align*}
+F_1 &= \frac{1}{\frac{1}{2}\big( \frac{1}{p} + \frac{1}{r}} \\
+&= \frac{2pr}{p+r}
+ \numberthis \label{eq:f1} 
+\end{align*}
 
 %Again though, prior work indicates no testing of either DTM or DIM in this regard, both of which offer improvements in the latent semantic representation of ordered document collections.
 
@@ -85,26 +119,54 @@ ARI = \frac{RI - E[RI]}{max(RI) - E[RI]}
 \end{align*}
 
 \subsubsection{Normalized Mutual Info}
-normalized mutual info
+The Normalized Mutual Info is another method of evaluating clustering performance that has been successfully applied in the context of topic modelling \parencite{Xu:2003:DCB:860435.860485, Cai:2008:MHT:1458082.1458202}. It again assumes we have two sets of labels, this time we call them $U$ and $V$, over $N$ objects. We define the entropy of a label set $U$ in equation \ref{eq:entropy}, where $P(i) = |U_i|/N$ is the probability that a random object from $U$ falls into class $U_i$.
 
-We adopt the normalized mutual information clustering metric used by \parencite{Xu:2003:DCB:860435.860485, Cai:2008:MHT:1458082.1458202} which has the benefit of being symmetric and independent of the absolute values of labels.
+\begin{align*}
+H(U) = \sum_{i=1}^{|U|} P(i)log(P(i))
+ \numberthis \label{eq:entropy} 
+\end{align*}
 
-\subsubsection{Homogeneity, Completeness and V-measure}
+The mutual information (MI) between $U$ and $V$ can be expressed as 
+
+\begin{align*}
+MI(U,V) = \sum_{i=1}^{|U|} \sum_{j=1}^{|V|} P(i,j)log(\frac{P(i,j)}{P(i)P(j)})
+ \numberthis \label{eq:MI} 
+\end{align*}
+
+With these two components we can write the normalized mutual information as proposed in \parencite{Vinh:2009:ITM:1553374.1553511}.
+
+\begin{align*}
+NMI(U,V) = \frac{MI(U,V)}{\sqrt{H(U)H(V)}}
+ \numberthis \label{eq:NMI} 
+\end{align*}
+
+%\subsubsection{Homogeneity, Completeness and V-measure}
 
 
 %----------------------------------------------------------------------------------------
 \section{DTM Model Overview}
 
-% intro: aim plus general strategy
-This section briefly outlines the dynamic topic model (\keyword{DTM}), following closely the original derivation found in \parencite{Blei:2006:DTM:1143844.1143859}. As this is intended as more of a summary, we recommend the reader examine the original paper for a complete exposition of the mechanics of the DTM. The goal of the DTM is to produce a topic model that takes into account the discrete time evolving nature of topics in a sequential corpus. The general approach is to chain together the underlying topic multinomials and topic proportion distributions, then to make use of the Kalman filter and variational wavelet regression to carry out approximate posterior inference over the latent topics.
+% Roadmap + Disclaimer
+This section briefly outlines the dynamic topic model (\keyword{DTM}), following closely the original derivation found in \parencite{Blei:2006:DTM:1143844.1143859}. As this is intended as more of a summary, we recommend the reader examine the original paper for a complete exposition of the mechanics of the DTM. 
 
-With regular latent dirichilet allocation we normally use a Dirichilet distribution to model our uncertainties in word distributions, hence the name. However, this is no longer an option as the Dirichilet distribution does not permit sequential modeling. Instead, we make a statespace model that evolves with Gaussian noise to chain together the natural parameters of each topic $\beta_{z,t}$ such that each topic "evolves" from the last.
+% Intuition + Conceptual Basis
+In our primer on LDA (in section \ref{ldaprimer}) we outlined the conceptual basis for static LDA topic models. Namely, that topics consist of a distribution over a fixed vocabulary and are determined by a set of hyper-parameters $\beta$. Additionally each document is represented as a combination of topics, with proportions controlled by their corresponding set of hyper-parameters $\alpha$. Roughly speaking, the goal of the Dynamic Topic Model (\keyword{DTM}) is to account for the drift in topics over time by chaining together a series of static LDA models. This is accomplished by tying the hyper-parameters $\alpha_{t-1}, \beta_{t-1}$ at time step $t-1$, to the hyper-parameters $\alpha_{t}, \beta_t$ at time step $t$. The result is a model that allows us to track how our topics evolve at each time step. 
+
+
+%The general approach is to chain together the underlying topic multinomials and topic proportion distributions, then to make use of the Kalman filter to carry out approximate posterior inference over the latent topics.
+
+% how do we actually tie these hyper parameters together?
+%With regular latent dirichilet allocation we normally use a Dirichilet distribution to model our uncertainties in word distributions, hence the name. However, this is no longer an option as the Dirichilet distribution does not permit sequential modeling. 
+
+\subsection{Chaining models together}
+
+The question then, is how do we tie our hyper-parameters together? Well, regularly with static LDA we would simply use a Dirichilet distribution to model our uncertainties in word distributions (hence the name). Unfortunately, the Dirichilet distribution does not lend itself to sequential modeling, which eliminates this option. Instead, we make a state-space model that evolves with Gaussian noise to chain together the natural parameters of each topic $\beta_{z,t}$ such that each topic "evolves" from the last.
 
 \begin{align*}
 \beta_{z,t} | \beta_{z,t-1} \sim  \mathcal{N}(\beta_{t-1,z},\sigma^2I)  \numberthis \label{eq:topicwordschain} 
 \end{align*}
 
-Similarly, document specific topic proportions $\theta$ are typically drawn from the Dirichilet distribution. To express the uncertainty over our topic proportions, for the DTM we use a logistic normal with mean $\alpha$. Then we chain our topic proportions together with the same trick as we did above with word distributions, by using Gaussian noise. This yields the graphical model in figure \ref{fig:GTMGM}.
+Similarly, with static LDA we would also pull our document specific topic proportions $\theta$ from the Dirichilet distribution. For the same reason as above this is no longer an option. So to express our uncertainty over our topic proportions, we use a logistic normal with mean $\alpha$. Then we chain our topic proportions together using the same trick as we did above with word distributions, (by using Gaussian noise). This yields the graphical model in figure \ref{fig:GTMGM}.
 
 \begin{align*}
 \alpha_{t} | \alpha_{t-1} \sim  \mathcal{N}(\alpha_{t-1},\delta^2I)  \numberthis \label{eq:topicpropschain} 
@@ -113,27 +175,30 @@ Similarly, document specific topic proportions $\theta$ are typically drawn from
 \begin{figure}[ht]
 \centering
 \includegraphics[width=130mm,scale=0.45]{Figures/DTMGM}
-\caption{Graphical model for DTM}
+\caption{Graphical model for DTM showing a series of chained static LDA models. The triangles represent the Kalman filter estimates of the hyper-parameters}
 \label{fig:GTMGM}
 \end{figure}
 
-% could put in the new process from Blei here but maybe that's a bit too much like plagiarism? Don't want that.
+% could put in the new process from Blei here but maybe that's a bit too much like plagiarism? Would not be cool. 
 
+\subsection{Variational approximate inference}
 % motivating variational methods
-Because we have used the Gaussian distribution to model the progression of our parameters, inference becomes intractable due to the non-conjugacy of Gaussian and multinomial models. As before in \ref{ldaprimer} with LDA, we take the variational approach to approximate inference, as opposed to Gibbs sampling, which allows us to handle larger document sets.
+Because we have used the Gaussian distribution to model the progression of our parameters, inference becomes intractable due to the non-conjugacy of Gaussian and multinomial models. To get around this we take the same variational approach to approximate inference as before in section \ref{ldaprimer} with static LDA. Taking a variational approach has the advantage of allowing us to handle larger document sets compared to Gibbs sampling which becomes computationally difficult at large corpus sizes. 
 
 % variational methods
-The goal here is to use a carefully tuned "dummy" distribution as a substitute for the true posterior. To do this we begin by creating a collection of variational parameters we will optimize over our latent variables. Our latent variables are the topics $\beta_{t,k}$, topic proportions $\theta_{t,d}$, and topic indicators $Z_{t,d,n}$. While we have variational parameters for each topic (consisting of a sequence of multinomial parameters), and for each document (the latent topic proportions). The resulting posterior, again following the notation of \parencite{Blei:2006:DTM:1143844.1143859} is given by equation \ref{eq:dtmpost}.
+The general strategy of variational approximate inference is to use a carefully tuned 'approximate' distribution as a substitute for the true posterior. To tune this approximate distribution we minimize the KL divergence between our estimated and true posterior. Finally we may then use this approximated posterior distribution to perform inference.
+
+We begin by creating a collection of variational parameters we will optimize over our latent variables. Our latent variables are the topics $\beta_{t,k}$, topic proportions $\theta_{t,d}$, and topic indicators $Z_{t,d,n}$. While we have variational parameters for each topic (consisting of a sequence of multinomial parameters), and for each document (the latent topic proportions). The resulting posterior, again following the notation of \parencite{Blei:2006:DTM:1143844.1143859} is given by equation \ref{eq:dtmpost}.
 
 \begin{align*}
 & \prod_{k=1}^K q(\beta_{k,1}, ... , \beta_{k,T} | \hat{\beta}_{k,1}, ... , \hat{\beta}_{k,T})  \times     \\
 & \prod_{t=1}^T \Big( \prod_{d=1}^{D_t} q(\theta_{t,d})| \gamma_{t,d}) \prod_{n=1}^{N_{t,d}}q(z_{t,d,n}|\phi_{t,d,n})   \Big)  \numberthis \label{eq:dtmpost} 
 \end{align*}
 
-Here we fit the variational observations $\{ \hat{\beta}_{k,1}, ... , \hat{\beta}_{k,T}  \}$ according to the KL divergence of our estimated and true posterior. Additionally each topic proportions vector $\gamma_{t,d}$ receives a corresponding free Dirichilet parameter, while each topic indicator $z_{t,d,n}$ receives a corresponding free multinomial parameter $\phi_{t,d,n}$. Subsequently we employ gradient ascent to optimize the topic proportion vectors while the document level parameters simply have a closed form update.
+This is where we tune our approximate posterior, and specifically the variational observations $\{ \hat{\beta}_{k,1}, ... , \hat{\beta}_{k,T}  \}$ according to the KL divergence between the estimated and the true posterior. Note that here, each topic proportions vector $\gamma_{t,d}$ receives a corresponding free Dirichilet parameter, while each topic indicator $z_{t,d,n}$ receives a corresponding free multinomial parameter $\phi_{t,d,n}$. To optimize the document topic proportion vectors we subsequently employ gradient ascent, however this is not necessary for the document level parameter updates as they simply have a closed form.
 
-% topic tracking
-Between time slices the variational parameters $\hat{\beta}$ and $\hat{\alpha}$ can then be predicted via either a Kalman filter or nonparametric wavelet regression. Both provide suitable estimates for tracking the progression of our latent topic parameters through each time step. Derivations for each method are provided in detail in  \parencite{Blei:2006:DTM:1143844.1143859} .
+%topic tracking
+Finally, we may track our variational parameters $\hat{\beta}$ and $\hat{\alpha}$  between time slices using either the Kalman filter or wavelet regression. For brevity we will not replicate the mechanics of these methods here and encourage the interested reader to refer to the derivations provided in detail in  \parencite{Blei:2006:DTM:1143844.1143859}.
 
 
 %\subsection{Issues}
@@ -146,6 +211,8 @@ Between time slices the variational parameters $\hat{\beta}$ and $\hat{\alpha}$ 
 %language based approach to modeling the influence of documents.
 %useful when traditional bibliometrics such as citations are not available. produces an internal measure of document influence that has been shown to correlate with citations. Closely related to the DTM but with XXX.
 
+% important for decisions about publishing and funding
+% also relevant to know for scientists who should read important work in their field for good research practice
 
 %probability of a word given the natural parameters of the word distribution beta at time t
 

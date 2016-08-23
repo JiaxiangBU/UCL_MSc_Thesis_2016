@@ -6,8 +6,10 @@
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Graphical model for LDA\relax }}{3}{figure.caption.13}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces wwttTopic6}}{5}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Graphical model for DTM\relax }}{11}{figure.caption.48}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Graphical model for DTM showing a series of chained static LDA models. The triangles represent the Kalman filter estimates of the hyper-parameters\relax }}{14}{figure.caption.67}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces PSQLSchema}}{17}{figure.caption.74}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces DTMCV}}{18}{figure.caption.78}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
