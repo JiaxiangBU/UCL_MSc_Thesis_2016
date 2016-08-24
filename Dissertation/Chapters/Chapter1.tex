@@ -15,7 +15,7 @@
 
 %----------------------------------------------------------------------------------------
 % Motivation and Background
-\section{The need for topic models}
+\section{Motivation}
 % - motivate topic models
 % data is big
 Researchers today are faced with a deluge of data. As we continue to digitize and aggregate our collective knowledge we produce ever increasing archives of information. The sheer volume and variety of forms this information may take - text, images, audio, video, social connections etc. - makes it difficult and in most cases impossible to parse manually. 
@@ -169,7 +169,7 @@ Dynamic topic models have the potential to aid this research by enabling us to t
 %research into new products or industries does not occur in a vacuum. 
 
 %----------------------------------------------------------------------------------------
-\section{Experiments}
+\section{Overview of Experiments}
 % So, now that you know what LDA is, why it's important, what the DTM is and how we're applying it, here's what we tried out and what we were looking for.  Maybe give some intuition. (insufficiencies in previous methods of testing)
 
 At the time of writing this, surprisingly little has been published exploring the effectiveness of both the DTM and the DIM. Much research has evaluated model quality solely based on the likelihood of held-out predictions, however likelihood does not always translate to semantically meaningful topics \parencite{Chang:Boyd-Graber:Wang:Gerrish:Blei-2009}. Additionally, the predictive performance of these models is adversely affected by longer time horizons due to an "increase in the rate of specialization in scientific language" \parencite{Blei:2006:DTM:1143844.1143859}. Acknowledging the room to explore alternative methods of model evaluation, we implemented the experiments listed below. 
@@ -206,7 +206,7 @@ Another method we used to evaluate the quality of the resulting document vectors
 
 % - If you believe all of these things you should give me a distinction. If not, read on...
 
-\section{Roadmap of Paper}
+\section{Thesis Outline}
 % roadmap
 The overall structure of this paper is as follows. In \textbf{chapter \ref{Chapter2}} we review the literature surrounding the applications and various evaluation methods for topic models,  and also give a detailed account of both the DTM and DIM.
 Then in \textbf{Chapter \ref{Chapter3}} we cover the experimental set up and considerations in data preparation. The results of our experiments are subsequently presented in \textbf{Chapter \ref{Chapter4}}, and finally we conclude in \textbf{Chapter \ref{Chapter5}} with a discussion of results and suggestions for future study.

@@ -6,36 +6,48 @@
 
 
 %----------------------------------------------------------------------------------------
-\section{DTM Results and Insights}
-
-\subsection{Topics Through Time}
+\section{Historical validation of topics}
 % word distributions of a topic over time
 
 % area chart of cumulative topic percentages in class over time. (i.e. add up all the vectors, normalize ot total amount, find percent, repeat for each epoch.)
 
+%----------------------------------------------------------------------------------------
+%\section{DIM Results and Insights}
+%\subsection{Influence Metric}
+%\subsubsection{validating influential patents}
+%\subsubsection{correlation with forward citations}
+%\subsubsection{correlation with page-rank}
 
-\subsubsection{validating topic histories in technology}
+%----------------------------------------------------------------------------------------
+\section{Coherence Testing}
 
+\begin{table}[ht]
+\caption[Coherences]{The coherence values of each model}
+\label{tab:coherences}
+\centering
+\begin{tabular}{l l l l l}
+\toprule
+\tabhead{Model} & \tabhead{c$\_$v} & \tabhead{c$\_$uci} & \tabhead{c$\_$npmi} & \tabhead{u$\_$mass} \\
+\midrule
+LDA & .5021 & .1904 & .0750 & -1.6283 \\
+DTM & .5980 & .4373 & .1213 & -1.6688 \\
+DIM & .5581 & .2865 & .1011 & -1.3478 \\
+\bottomrule\\
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=130mm,scale=0.45]{Figures/DTMCoherences}
+\decoRule
+\caption[EpochCoherences]{Coherence scores for the DTM and LDA across epochs}
+\label{fig:EpochCoherences}
+\end{figure}
 
 
 %----------------------------------------------------------------------------------------
-\section{DIM Results and Insights}
-
-\subsection{Influence Metric}
-
-\subsubsection{validating influential patents}
-
-\subsubsection{correlation with forward citations}
-
-\subsubsection{correlation with page-rank}
-
-
-
-%----------------------------------------------------------------------------------------
-
-\section{Performance Evaluation} 
-
-\subsection{Classification}
+\section{Classification Results}
 
 % they cite the normalized mutual information equation! use those!
 The clustering result is evaluated by comparing the Normalized mutual information (Xu et al. 2003; Cai et al. 2008) [NEED TO ACTUALLY CITE]
@@ -46,5 +58,5 @@ The clustering result is evaluated by comparing the Normalized mutual informatio
 %J. G. Shanahan, S. Amer-Yahia, I. Manolescu, Y. Zhang, D. A. Evans, A. Kolcz, K.-S. Choi, &
 %A. Chowdhury (Eds.), CIKM (pp. 911–920). ACM.
 
-\subsection{Clustering}
+\section{Clustering Results}
 

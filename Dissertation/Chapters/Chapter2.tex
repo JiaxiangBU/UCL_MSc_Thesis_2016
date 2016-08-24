@@ -55,6 +55,7 @@ Two more noteworthy measures of topic coherence, in addition to those outlined a
 
 
 \subsection{Document Classification}
+\label{classificationmetrics}
 %------Text Classification---------
 Though the topics produced by topic models are useful in their own right for the qualitative analysis of documents, they are also useful quantitatively when trying to classify documents. For instance a large news organization may want to automatically sort its thousands of articles into the categories "politics", "natural disasters" and "sports". To do this they might use a topic model to get a vector of topic proportions for each document to use as features for a classification algorithm. This process is referred to as document vectorization.
 
@@ -100,6 +101,7 @@ F_1 &= \frac{1}{\frac{1}{2}\big( \frac{1}{p} + \frac{1}{r}} \\
 %Again though, prior work indicates no testing of either DTM or DIM in this regard, both of which offer improvements in the latent semantic representation of ordered document collections.
 
 \subsection{Document Clustering}
+\label{DocumentClustering}
 %------Clustering-------
 Another well established task for topic models is document clustering. LDA has been used to successfully cluster a range of documents such as news articles and legal judgements \parencite{Lu:2011:ITP:1969504.1969510, DBLP:journals/corr/XieX13, Kumar2013}. As opposed to classification where we want to assign an explicit label to each document, with clustering we wish to evaluate how well the resulting document topic vectors separate the documents into a meaningful structure.
 
@@ -166,7 +168,7 @@ The question then, is how do we tie our hyper-parameters together? Well, regular
 \beta_{z,t} | \beta_{z,t-1} \sim  \mathcal{N}(\beta_{t-1,z},\sigma^2I)  \numberthis \label{eq:topicwordschain} 
 \end{align*}
 
-Similarly, with static LDA we would also pull our document specific topic proportions $\theta$ from the Dirichilet distribution. For the same reason as above this is no longer an option. So to express our uncertainty over our topic proportions, we use a logistic normal with mean $\alpha$. Then we chain our topic proportions together using the same trick as we did above with word distributions, (by using Gaussian noise). This yields the graphical model in figure \ref{fig:GTMGM}.
+Similarly, with static LDA we would also pull our document specific topic proportions $\theta$ from the Dirichilet distribution. For the same reason as above this is no longer an option. So to express our uncertainty over our topic proportions, we use a logistic normal with mean $\alpha$. Then we chain our topic proportions together using the same trick as we did above with word distributions, (by using Gaussian noise). This yields the graphical model in figure \ref{fig:DTMGM}.
 
 \begin{align*}
 \alpha_{t} | \alpha_{t-1} \sim  \mathcal{N}(\alpha_{t-1},\delta^2I)  \numberthis \label{eq:topicpropschain} 
@@ -175,8 +177,8 @@ Similarly, with static LDA we would also pull our document specific topic propor
 \begin{figure}[ht]
 \centering
 \includegraphics[width=130mm,scale=0.45]{Figures/DTMGM}
-\caption{Graphical model for DTM showing a series of chained static LDA models. The triangles represent the Kalman filter estimates of the hyper-parameters}
-\label{fig:GTMGM}
+\caption[DTMGM]{Graphical model for DTM showing a series of chained static LDA models. The triangles represent the Kalman filter estimates of the hyper-parameters}
+\label{fig:DTMGM}
 \end{figure}
 
 % could put in the new process from Blei here but maybe that's a bit too much like plagiarism? Would not be cool. 
