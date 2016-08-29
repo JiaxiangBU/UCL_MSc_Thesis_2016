@@ -23,10 +23,16 @@ We attribute the improved performance of the dynamic models to their richer post
 In conclusion, we have empirically demonstrated the enhanced performance of dynamic topic models at producing coherent topics, and vectorizing documents for document classification and clustering. We therefore recommend the use of these models in situations where the latent temporal information of documents is important and one wishes to produce powerful vector representations for subsequent tasks.
 
 \section{Future Work}
+While for the scope of a thesis we believe our evaluation of the dynamic topic models to be fairly comprehensive, several questions remain after this research. Moving forward, these questions posit possible options for future investigation, the first of which is to quantitatively asses the validity of the document influence estimates produced my the DIM. Aside from correlating inferred document influence with forward citations, one might also correlate them with pagerank scores for each document. Subsequent research might pursue the following research questions.
 
-test against tfidf and bag of words as alternate benchmarks
+\begin{itemize}
 
-quantitatively validate influence measure by correlating with forward citations. go beyond that by comparing to pagerank
+\item We have observed that the DTM and DIM can outperform traditional LDA at a variety of tasks. How well do these models fare against other traditional document vectorization benchmarks such as the tf-idf and bag-of-words models?
 
+\item Additionally, one might test the dynamic models against similar LDA extensions that monitor the birth and death of topics. How would they fair against algorithms that also encode the temporal information latent in a corpus?
+
+\item Finally, it is of practical interest how the performance and training times of these algorithms scale with certain variables. How do factors such as document length, corpus size, and number of classes affect performance?
+
+\end{itemize}
 
 
