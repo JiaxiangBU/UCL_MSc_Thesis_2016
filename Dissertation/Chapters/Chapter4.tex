@@ -90,52 +90,144 @@ Results are similar when looking at coherence across epochs rather than aggregat
 
 %----------------------------------------------------------------------------------------
 \section{Classification Results}
+\label{classres}
+At classification the DTM again proved superior, with a final precision, recall and F1 score of .64, .64, and .64 respectively. However the DIM performed marginally worse than the static LDA model, a contrast to the DIM's improved topic coherences compared to static LDA. The DIM generated a final precision, recall, and F1 score of .58, .56, and .56 while the static LDA model yielded precision, recall and F1 scores of .58, .58, and .58.
 
-% they cite the normalized mutual information equation! use those!
-The clustering result is evaluated by comparing the Normalized mutual information (Xu et al. 2003; Cai et al. 2008) [NEED TO ACTUALLY CITE]
-%Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. In
-%SIGIR ’03: Proceedings of the 26th annual international ACM SIGIR conference on research and
-%development in informaion retrieval (pp. 267–273). New York, NY, USA: ACM.
-%Cai, D., Mei, Q., Han, J., & Zhai, C. (2008). Modeling hidden topics on document manifold. In
-%J. G. Shanahan, S. Amer-Yahia, I. Manolescu, Y. Zhang, D. A. Evans, A. Kolcz, K.-S. Choi, &
-%A. Chowdhury (Eds.), CIKM (pp. 911–920). ACM.
+Table \ref{tab:classifiers} contains the cross validated F1 scores of each classifier trained on the document topic vectors provided by static LDA, the DTM and DIM. We used radial basis function support vector machines to generate the final classification results as this classifier yielded the highest cross validated F1 score across all three models.
 
+The precision, recall, and F1 score for LDA, DIM and the DTM, broken down by patent class labels, can be found in tables \ref{tab:ldaclass}, \ref{tab:dimclass}, and \ref{tab:dtmclass} respectively. These results are illustrated in their corresponding normalized confusion matrices found in figures \ref{fig:LDAmatrix}, \ref{fig:DIMmatrix}, and \ref{fig:DTMmatrix}. Patents relating to "turbines and wheels" tended to be the most difficult to classify while "conventional" patents were generally the best classified. The precision and recall was reasonably balanced for the classifiers of all three models, with the DIM based classifier favoring precision slightly. 
 
+%samples aren't balanced so we considered f1 score rather than just accuracy.
 
 \begin{table}[!htb]
-\caption[Coherences]{Cross validated accuracy score for each classifier}
+\caption[crossvalclass]{Cross validated accuracy score for each classifier}
 \label{tab:classifiers}
 \centering
 \begin{tabular}{l  l  l  l}
 \toprule
 \tabhead{Model} & \tabhead{DTM CV score} & \tabhead{DIM CV score}  & \tabhead{LDA CV Score} \\
 \midrule
-ASGD & 0.499683 & 0.466258 & 0.439986 \\
-Adaboost & 0.470454 & 0.442626 & 0.423886 \\
-Decision Tree & 0.501702 & 0.469980 & 0.451380 \\
-Gaussian NB & 0.489989 & 0.456546 & 0.439044 \\
-KNN & 0.445148 & 0.414042 & 0.395604 \\
-LDA & 0.495300 & 0.467191 & 0.431705 \\
-LR & 0.499370 & 0.468913 & 0.437019 \\
-Lin. SVC & 0.461567 & 0.455789 & 0.404066 \\
-Passive-Aggressive I & 0.468881 & 0.418437 & 0.356245 \\
-Passive-Aggressive II & 0.341068 & 0.322616 & 0.291864 \\
-Perceptron & 0.399218 & 0.350484 & 0.309565 \\
-QDA & 0.416097 & 0.430911 & 0.435142 \\
-RBF SVM & \keyword{0.523262} & 0.487795 & \keyword{0.467164} \\
-Random Forest & 0.516550 & \keyword{0.488575} & 0.459983 \\
-SGD & 0.464214 & 0.454228 & 0.424211 \\
+ASGD & 0.621013 & 0.521755 & 0.556590 \\
+Adaboost & 0.567315 & 0.504048 & 0.514788 \\
+Decision Tree & 0.491707 & 0.546153 & 0.490798 \\
+Gaussian NB & 0.582415 & 0.540346 & 0.530325 \\
+KNN & 0.553341 & 0.472817 & 0.494431 \\
+LDA & 0.618973 & 0.534562 & 0.551576 \\
+LR & 0.620385 & 0.521948 & 0.555715 \\
+Lin. SVC & 0.564651 & 0.447450 & 0.510240 \\
+Passive-Aggressive I & 0.601775 & 0.506445 & 0.450347 \\
+Passive-Aggressive II & 0.385359 & 0.378960 & 0.397031 \\
+Perceptron & 0.458625 & 0.379983 & 0.434744 \\
+QDA & 0.585174 & 0.453922 & 0.529446 \\
+RBF SVM & \keyword{0.637477} & \keyword{0.564730} & \keyword{0.578102} \\
+Random Forest & 0.524156 & 0.547191 & 0.472841 \\
+SGD & 0.602344 & 0.514596 & 0.550329 \\
 \bottomrule\\
 \end{tabular}
 \end{table}
 
 
+%-----------lda classification table----------------------
 
+\begin{table}[!htb]
+\caption[ldaclass]{Classification results of LDA based classifier}
+\label{tab:ldaclass}
+\centering
+\begin{tabular}{l l l l}
+\toprule
+\tabhead{Class Label} & \tabhead{Precision} & \tabhead{Recall} & \tabhead{F1} \\
+\midrule
+ Hydro energy & 0.49 & 0.52 & 0.50 \\
+ Conventional & 0.62 & 0.65 & 0.64 \\
+ Turbines and Wheels & 0.45 & 0.44 & 0.44  \\
+ Other Parts & 0.61 & 0.57 & 0.59  \\
+ Stream and Damless & 0.63 & 0.62 & 0.62  \\
+\hline 
+ Avg$/$Total & 0.58 & 0.58 & 0.58  \\
+\bottomrule\\
+\end{tabular}
+\end{table}
 
+\newpage
 
+%-----------dim classification table----------------------
+\begin{table}[!htb]
+\caption[ldaclass]{Classification results of DIM based classifier}
+\label{tab:dimclass}
+\centering
+\begin{tabular}{l l l l}
+\toprule
+\tabhead{Class Label} & \tabhead{Precision} & \tabhead{Recall} & \tabhead{F1} \\
+\midrule
+Hydro energy  & 0.38 & 0.44 & 0.41 \\
+       Conventional  & 0.68 & 0.60 & 0.63 \\
+Turbines and Wheels  & 0.42 & 0.43 & 0.43 \\
+        Other Parts  & 0.56 & 0.66 & 0.61 \\
+ Stream and Damless  & 0.68 & 0.53 & 0.59 \\
+\hline
+ Avg$/$Total & 0.58 & 0.56 & 0.56 \\
+\bottomrule\\
+\end{tabular}
+\end{table}
+
+%-----------dtm classification table----------------------
+\begin{table}[!htb]
+\caption[dtmclass]{Classification results of DTM based classifier}
+\label{tab:dtmclass}
+\centering
+\begin{tabular}{l l l l}
+\toprule
+\tabhead{Class Label} & \tabhead{Precision} & \tabhead{Recall} & \tabhead{F1} \\
+\midrule
+Hydro energy & 0.70 & 0.65 & 0.67 \\
+       Conventional & 0.69 & 0.69 & 0.69 \\
+Turbines and Wheels & 0.49 & 0.50 & 0.49 \\
+        Other Parts & 0.63 & 0.62 & 0.63 \\
+ Stream and Damless & 0.66 & 0.69 & 0.67 \\
+\hline
+ Avg$/$Total & 0.64 & 0.64 & 0.64 \\
+\bottomrule\\
+\end{tabular}
+\end{table}
+
+%-----------classification figures----------------------
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.65]{Figures/ldaclass}
+\decoRule
+\caption[ldaclass]{Confusion matrix of LDA classification results}
+\label{fig:LDAmatrix}
+\end{figure}
+
+\newpage 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.65]{Figures/dimclass}
+\decoRule
+\caption[dimclass]{Confusion matrix of DIM classification results}
+\label{fig:DIMmatrix}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.65]{Figures/dtmclass}
+\decoRule
+\caption[dtmclass]{Confusion matrix of DTM classification results}
+\label{fig:DTMmatrix}
+\end{figure}
 
 
 \section{Clustering Results}
+
+Here, we found that the vector spaces created by the DIM, and particularly the DTM, also excelled at effectively clustering documents. Scores for the various clustering metrics we calculated can be found in table \ref{tab:clusters}. The DTM received the highest silhouette score at .55, more than double the score of .22 received by LDA, meaning it provided the densest and most distinct clustering of the documents irrespective of their class labels.
+
+When we take into account the true class labels of each patent, using the normalized mutual information (NMI), we see that the DTM again produces the highest score. This suggests a higher agreement between the DTM's K-means predicted labels and the true labels compared to those of the other models. Curiously though, the DIM achieved the highest adjusted rand index (ARI) indicating a high similarity between its K-means predicted labels and the true labels. While the LDA lagged in both its NMI and ARI scores. 
+
+Finally, we observed that the dynamic models both produced higher homogeneity and completeness scores than the static LDA model, with the DTM again leading slightly over the DIM. The DTM achieved a homogeneity of .21 indicating that its corresponding kmeans cluster assignments each contained more members of a single class than had the other models' cluster assignments. Additionally the completeness of the DTM, measuring how well all members of a given class are assigned to the same cluster, was the highest at .207 with the DIM \emph{just} behind at .205 and LDA at .175.
+
+To visualize the vector spaces generated by each model we made use of a handful of embedding algorithms, namely TSNE, PCA, and LDA, to project the spaces down to 2 dimensions. The results of this visualization can be seen in figure \ref{fig:clusterembeds}.
+It is interesting to observe how strikingly different the vector spaces produced by the DTM, DIM and LDA model are when plotted side by side. However some themes run constant throughout such as the proximity of "turbines and wheels" and "other parts" patents, represented by the two shades of green. This is substantiated by the classification confusion matrices illustrated in section \ref{classres} where we see that classifiers tended to have difficulty in assigning labels for "turbines and wheels" and "other parts" patents, more commonly mistaking them for each other than for other classes.
 
 \begin{table}[!htb]
 \caption[Coherences]{Clustering results}
@@ -145,7 +237,33 @@ SGD & 0.464214 & 0.454228 & 0.424211 \\
 \toprule
 \tabhead{metric} & \tabhead{DTM} & \tabhead{DIM} & \tabhead{LDA} \\
 \midrule
-NMI & .2104 & .1581 & .1257 \\
+Silhouette   & 0.559518 & 0.370500 & 0.227973 \\
+NMI	 		 & 0.210324 & 0.208029 	& 0.177195 \\
+ARI		& 0.140005		& 0.158060		& 0.108182  \\
+Homogeneity  & 0.213513 & 0.210767 & 0.178718 \\
+Completeness & 0.207182 & 0.205327 & 0.175685 \\
+
 \bottomrule\\
 \end{tabular}
 \end{table}
+
+
+% they cite the normalized mutual information equation! use those!
+%The clustering result is evaluated by comparing the Normalized mutual information (Xu et al. 2003; Cai et al. 2008) [NEED TO ACTUALLY CITE]
+
+
+%Xu, W., Liu, X., & Gong, Y. (2003). Document clustering based on non-negative matrix factorization. In
+%SIGIR ’03: Proceedings of the 26th annual international ACM SIGIR conference on research and
+%development in informaion retrieval (pp. 267–273). New York, NY, USA: ACM.
+%Cai, D., Mei, Q., Han, J., & Zhai, C. (2008). Modeling hidden topics on document manifold. In
+%J. G. Shanahan, S. Amer-Yahia, I. Manolescu, Y. Zhang, D. A. Evans, A. Kolcz, K.-S. Choi, &
+%A. Chowdhury (Eds.), CIKM (pp. 911–920). ACM.
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=130mm,scale=0.65]{Figures/Clusters}
+\decoRule
+\caption[clusterembeds]{TSNE, PCA and Linear Discriminant Analysis embeddings for the vector spaces generated by DTM, DIM, and LDA model}
+\label{fig:clusterembeds}
+\end{figure}
