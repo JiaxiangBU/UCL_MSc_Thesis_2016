@@ -9,7 +9,7 @@ In the interest of reproducibility we include in this section some of the consid
 \section{Data Considerations}
 
 % THE DATASET
-The data we used for our experiments comes from the August 2015 EPO Worldwide Patent Statistical Database (\keyword{PATSTAT}). According to the EPO, this data set contains over 90 million patent documents from leading industrialized and developing countries, with some documents as early as the nineteenth century. Thankfully, the expanse of this data is met with an equal level of documentation\footnote{For more information the official catalogue can be found at \url{http://goo.gl/LRQWnu}}. 
+The data we used for our experiments comes from the August 2014 EPO Worldwide Patent Statistical Database (\keyword{PATSTAT}). According to the EPO, this data set contains over 90 million patent documents from leading industrialized and developing countries, with some documents as early as the nineteenth century. Thankfully, the expanse of this data is met with an equal level of documentation\footnote{For more information the official catalogue can be found at \url{http://goo.gl/LRQWnu}}. 
 
 
 % CPC/IPC CLASSES
@@ -85,7 +85,7 @@ In order to inspect the relationship our parameters had with topic coherence we 
 \label{fig:DTMUCI}
 \end{figure}
 
-Table \ref{tab:paramtune} contains the best coherence scores obtained by each model for each measure after sampling our constrained parameter space. Despite tuning the models on a smaller set of documents it is interesting to note that a trend emerges, namely that the DTM tends to outperform both the DIM and the static LDA model in terms of topic coherence. However we reserve judgement until obtaining the final coherence testing results listed in section XXX. 
+Table \ref{tab:paramtune} contains the best coherence scores obtained by each model for each measure after sampling our constrained parameter space, with higher scores being more desirable. Despite tuning the models on a smaller set of documents it is interesting to note that a trend emerges, namely that the DTM tends to outperform both the DIM and the static LDA model in terms of topic coherence. However we reserve judgement until obtaining the final coherence testing results listed in section \ref{tab:coherences}. 
 
 \begin{table}[ht]
 \caption[HParamTuning]{The peak coherences achieved for various models and parameter choices.}
@@ -102,7 +102,7 @@ DIM & .5789 & .1145 & .1175 & -1.6033 \\
 \end{tabular}
 \end{table}
 
-Though the optimal parameter sets suggested by each coherence measure did not greatly differ from one another, ultimately we selected the parameters recommended by the c$\_$v measure. We preferred the judgement of the c$\_$v measure as it is known to have the strongest correlation with human judgement \parencite{Roder:2015:EST:2684822.2685324}. The optimal parameter set found for the LDA model under the c$\_$v measure was $K$ = 13, $M_{iter}$ = 40, while for the DIM it was $K$ = 5, $M_{iter}$ = 32, and for the DTM it was $K$ = 17, $M_{iter}$ = 36. These were the parameters we used for the full scale coherence testing reported in section XXX.
+Though the optimal parameter sets suggested by each coherence measure did not greatly differ from one another, ultimately we selected the parameters recommended by the c$\_$v measure. We preferred the judgement of the c$\_$v measure as it is known to have the strongest correlation with human judgement \parencite{Roder:2015:EST:2684822.2685324}. The optimal parameter set found for the LDA model under the c$\_$v measure was $K$ = 13, $M_{iter}$ = 40, while for the DIM it was $K$ = 5, $M_{iter}$ = 32, and for the DTM it was $K$ = 17, $M_{iter}$ = 36. These were the parameters we used for the full scale coherence testing reported in section \ref{coherencetesting}.
 
 
 %setting the alpha parameter in LDA as recommended by (e.g., as in Steyvers and Griffiths 2007) It acts as a form of regularization.
@@ -114,18 +114,18 @@ Though the optimal parameter sets suggested by each coherence measure did not gr
 % how we tested coherences of the models
 The coherence testing experiment follows much the same procedure as above for hyperparameter tuning, with the difference being a full data set, and defined model parameters. We begin by training the LDA model, DTM and DIM over the same set of input documents belonging to the \keyword{Y02E 10/20} hydro energy CPC label, ranging from the year 1997 to 2015. Each model was trained under the optimal parameters found via the hyperparameter tuning process from section \ref{tuning}. 
 
-Following model training, we retrieved all topics from the LDA model, DTM and the DIM, and assessed their semantic value via the \keyword{c$\_$v}, \keyword{c$\_$uci}, \keyword{c$\_$npmi}, and \keyword{U$\_$mass} coherence metrics. However because the DTM and DIM both output a \emph{series} of topics rather than a single set, the topic coherences were tested at each time step. Results for this experiment can be found in section XXX.
+Following model training, we retrieved all topics from the LDA model, DTM and the DIM, and assessed their semantic value via the \keyword{c$\_$v}, \keyword{c$\_$uci}, \keyword{c$\_$npmi}, and \keyword{U$\_$mass} coherence metrics. However because the DTM and DIM both output a \emph{series} of topics rather than a single set, the topic coherences were tested at each time step. Results for this experiment can be found in section \ref{coherencetesting}.
 
 \subsection{Classification}
 % how we classified 
 To asses the efficacy of each model at creating feature vectors useful for document classification we begin by taking the same models as above, (the LDA model, DTM and DIM, trained on the hydro electric patents) and extract the document topic vectors for each document.
 
-We then use 80$\%$ of these unsupervisedly learned feature vectors to train a collection of classifiers, and tested on the remaining 20$\%$ using the CPC subclasses for each document as true labels. We cross validated each classifier to ensure more robust estimates of performance, and selected the results of the classifier with the highest cross validated F1 score for each topic model. To further analyze the performance of each topic model's peak classifier we made use of the classification metrics outlined in section \ref{classificationmetrics} namely \keyword{accuracy}, \keyword{precision}, \keyword{recall}, and \keyword{F1 score}. Results for this experiment can be found in section XXX.
+We then use 80$\%$ of these unsupervisedly learned feature vectors to train a collection of classifiers, and tested on the remaining 20$\%$ using the CPC subclasses for each document as true labels. We cross validated each classifier to ensure more robust estimates of performance, and selected the results of the classifier with the highest cross validated F1 score for each topic model. To further analyze the performance of each topic model's peak classifier we made use of the classification metrics outlined in section \ref{classificationmetrics} namely \keyword{accuracy}, \keyword{precision}, \keyword{recall}, and \keyword{F1 score}. Results for this experiment can be found in section \ref{classres}.
 
 
 \subsection{Clustering}
 % how we carried out clustering
 Lastly, we conduct a clustering experiment to determine how well each model creates internally consistent groups of documents that are distinct from one another. We begin with the same set of models and data as with the other experiments, namely the LDA model, DTM and DIM trained on hydro electric PATSTAT patents. As with the classification experiment, we again extract the document topic vectors for each document.
 
-However for this experiment, rather than beginning by handing the vectors to a series of classifiers, we begin by visualizing the space they formed using \keyword{TSNE}, \keyword{PCA}, and \keyword{MDS} embeddings to inspect the clusters by eye. After visually inspecting each model's document vectors we performed K-means clustering with $K=5$, (the number of true topics in the corpus). To evaluate clustering performance we feed the labels estimated by K-means for each set of document vectors, (alongside the respective true labels), to each of the clustering metrics outlined in section \ref{DocumentClustering}. These metrics include the \keyword{adjusted rand score}, \keyword{normalized mutual info}, \keyword{homogeneity}, \keyword{completeness} and \keyword{V-measure}. Results for this experiment can be found in section XXX.
+However for this experiment, rather than beginning by handing the vectors to a series of classifiers, we begin by visualizing the space they formed using \keyword{TSNE}, \keyword{PCA}, and \keyword{MDS} embeddings to inspect the clusters by eye. After visually inspecting each model's document vectors we performed K-means clustering with $K=5$, (the number of true topics in the corpus). To evaluate clustering performance we feed the labels estimated by K-means for each set of document vectors, (alongside the respective true labels), to each of the clustering metrics outlined in section \ref{DocumentClustering}. These metrics include the \keyword{adjusted rand score}, \keyword{normalized mutual info}, \keyword{homogeneity}, \keyword{completeness} and \keyword{V-measure}. Results for this experiment can be found in section \ref{clusres}.
 

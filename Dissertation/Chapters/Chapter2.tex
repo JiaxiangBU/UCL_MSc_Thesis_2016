@@ -105,23 +105,25 @@ F_1 &= \frac{1}{\frac{1}{2}\big( \frac{1}{p} + \frac{1}{r}} \\
 %------Clustering-------
 Another well established task for topic models is document clustering. LDA has been used to successfully cluster a range of documents such as news articles and legal judgements \parencite{Lu:2011:ITP:1969504.1969510, DBLP:journals/corr/XieX13, Kumar2013}. As opposed to classification where we want to assign an explicit label to each document, with clustering we wish to evaluate how well the resulting document topic vectors separate the documents into a meaningful structure.
 
-\subsubsection{Adjusted Rand Score}
-One way of accomplishing this is by using the \keyword{Adjusted Rand Score} which measures the similarity of two sets of class labels; namely the true labels $C$ and those predicted by a clustering algorithm $K$. We may calculate the raw (unadjusted) Rand index following equation \ref{eq:RI} \parencite{Hubert1985}. 
+\subsubsection{Adjusted Rand Index}
+One way of accomplishing this is by using the \keyword{Adjusted Rand Index}, a score which measures the similarity of two sets of class labels; namely the true labels $U$ and those predicted by a clustering algorithm $V$. We may calculate the raw (unadjusted) Rand index following equation \ref{eq:RI} \parencite{Hubert1985}. 
 
 \begin{align*}
-RI = \frac{a + b}{C_2^{n_{\text{samples}}}}
+RI = \frac{a + b}{U_2^{n_{\text{samples}}}}
  \numberthis \label{eq:RI} 
 \end{align*}
 
-Where $a$ is the number of pairs of elements in $C$ belonging to the same class, and in $K$ belonging to the same class. Conversely $b$ is the number of pairs of elements in $C$ belonging to different classes, and in $k$ belonging to different classes. Finally, $C_2^{n_{\text{samples}}}$ is the total number of possible pairs in the dataset. In order to ensure that random labelings receive a score of zero we define the adjusted Rand index as 
+Where $a$ is the number of pairs of elements in $U$ belonging to the same class, and in $V$ belonging to the same class. Conversely $b$ is the number of pairs of elements in $U$ belonging to different classes, and in $V$ belonging to different classes. Finally, $U_2^{n_{\text{samples}}}$ is the total number of possible pairs in the dataset. In order to ensure that random labelings receive a score of zero we define the Adjusted Rand Index as 
 
 \begin{align*}
 ARI = \frac{RI - E[RI]}{max(RI) - E[RI]}
  \numberthis \label{eq:ARI} 
 \end{align*}
 
+Values of the Adjusted Rand Index range from -1 to 1, with a score of indicating a perfect match between the predicted and true class labels. Though the ARI requires the ground truth labels, it does have a unique beneficial trait. Namely that random labelings receive scores near 0, such that we may gauge how close our predicted labels are to a random guess.
+
 \subsubsection{Normalized Mutual Info}
-The Normalized Mutual Info is another method of evaluating clustering performance that has been successfully applied in the context of topic modelling \parencite{Xu:2003:DCB:860435.860485, Cai:2008:MHT:1458082.1458202}. It again assumes we have two sets of labels, this time we call them $U$ and $V$, over $N$ objects. We define the entropy of a label set $U$ in equation \ref{eq:entropy}, where $P(i) = |U_i|/N$ is the probability that a random object from $U$ falls into class $U_i$.
+The Normalized Mutual Info is another method of evaluating clustering performance that has been successfully applied in the context of topic modelling \parencite{Xu:2003:DCB:860435.860485, Cai:2008:MHT:1458082.1458202}. It again assumes we have two sets of labels $U$ and $V$, over $N$ objects. We define the entropy of a label set $U$ in equation \ref{eq:entropy}, where $P(i) = |U_i|/N$ is the probability that a random object from $U$ falls into class $U_i$.
 
 \begin{align*}
 H(U) = \sum_{i=1}^{|U|} P(i)log(P(i))
@@ -142,12 +144,54 @@ NMI(U,V) = \frac{MI(U,V)}{\sqrt{H(U)H(V)}}
  \numberthis \label{eq:NMI} 
 \end{align*}
 
-%\subsubsection{Homogeneity, Completeness and V-measure}
+Similar to the ARI, random labelings under the NMI criterion receive a score close to 0, though values for NMI range from 0 to 1. Additionally, the NMI has the advantage of being unbiased in its assumptions of cluster structure, and has no preference towards either isotropic or "folded" cluster shapes. 
 
+
+\subsubsection{Homogeneity}
+Homogeneity is a clustering metric that measures how purely each cluster contains a single class. It requires the cluster labels $K$ and class labels $C$ and is defined as
+
+\begin{align*}
+h &= 1 - \frac{H(C|K)}{H(C)}
+\numberthis \label{eq:homogeneity} 
+\end{align*}
+
+Where H(C|K) is the conditional entropy of the classes given the cluster assignments, and H(C) is the entropy of the classes. We express these as
+
+\begin{align*}
+H(C|K) &= -\sum_{c=1}^{|C|}\sum_{k=1}^{|K|} \frac{n_{c,k}}{n}
+log \big( \frac{n_{c,k}}{n_k}  \big) \\
+H(C) &= -\sum_{c=1}^{|C|} \frac{n_c}{n} log\big( \frac{n_{c}}{n}  \big) \numberthis \label{eq:CondEntropy} 
+\end{align*}
+
+Where $n$, $n_c$, $n_k$ represent the total number of samples, the number of samples belonging to class c and to cluster k respectively. $n_{c,k}$ then represents the number of samples from class c assigned to cluster k.
+
+One benefit of this metric is that it remains agnostic as to the shape of clusters, they need not belong to a certain distribution. Additionally, the homogeneity is nicely set between 0 and 1 with higher scores being more desirable. The down side however is as mentioned before, homogeneity requires the ground truth labels which in practice can be quite limiting. 
+
+\subsubsection{Completeness}
+Completeness is a clustering metric complementary to Homogeneity outlined above. In fact if one reverses the class and cluster labels they would obtain the completeness. Following the same definitions as with Homogeneity, completeness becomes
+
+\begin{align*}
+c &= 1 -  \frac{H(K|C)}{H(K)}
+\numberthis \label{eq:completeness} 
+\end{align*}
+
+Conceptually though the completeness answers a different question, namely how many members of a single class reside in the same cluster. This has much the same benefits and drawback as Homogeneity: it requires the ground truth labels, but allows for various cluster shapes and yields a score bounded between 0 and 1. 
+
+\subsubsection{Silhouette Coefficient}
+One clustering measure that operates without the need for true labels is the Silhouette Coefficient. The Silhouette Coefficient score evaluates how dense and disparate each of the clusters are. This is characterized by clustered points close together with centroids further apart which we measure as
+
+\begin{align*}
+s = \frac{b-a}{max(a,b)}
+\numberthis \label{eq:silhouette} 
+\end{align*}
+
+Where $a$ is the mean distance between a sample and all other points in the same \emph{class}, and $b$ is the mean distance between a sample and all other points in the next nearest \emph{cluster}. The score is bounded from -1 to 1, again with higher scores corresponding to improved clustering. 
+
+Aside from not requiring the true class labels, one advantage of using the Silhoutte Coefficient is that its definition of a 'good' cluster is somewhat intuitive. Points within a cluster should ideally be closer together, and the clusters themselves should remain as distinct as possible. However one downside of the Silhoutte Coefficient score is its sensitivity to the convexity of clusters, i.e. using methods such as DBSCAN can distort the value of the score. (Though methods such as K-means are acceptable.)
 
 %----------------------------------------------------------------------------------------
 \section{DTM Model Overview}
-
+\label{DTM}
 % Roadmap + Disclaimer
 This section briefly outlines the dynamic topic model (\keyword{DTM}), following closely the original derivation found in \parencite{Blei:2006:DTM:1143844.1143859}. As this is intended as more of a summary, we recommend the reader examine the original paper for a complete exposition of the mechanics of the DTM. 
 
@@ -197,7 +241,7 @@ We begin by creating a collection of variational parameters we will optimize ove
 & \prod_{t=1}^T \Big( \prod_{d=1}^{D_t} q(\theta_{t,d})| \gamma_{t,d}) \prod_{n=1}^{N_{t,d}}q(z_{t,d,n}|\phi_{t,d,n})   \Big)  \numberthis \label{eq:dtmpost} 
 \end{align*}
 
-This is where we tune our approximate posterior, and specifically the variational observations $\{ \hat{\beta}_{k,1}, ... , \hat{\beta}_{k,T}  \}$ according to the KL divergence between the estimated and the true posterior. Note that here, each topic proportions vector $\gamma_{t,d}$ receives a corresponding free Dirichilet parameter, while each topic indicator $z_{t,d,n}$ receives a corresponding free multinomial parameter $\phi_{t,d,n}$. To optimize the document topic proportion vectors we subsequently employ gradient ascent, however this is not necessary for the document level parameter updates as they simply have a closed form.
+Now we are ready to tune our approximate posterior, and specifically the variational observations $\{ \hat{\beta}_{k,1}, ... , \hat{\beta}_{k,T}  \}$ according to the KL divergence between the estimated and the true posterior. Note that here, each topic proportions vector $\gamma_{t,d}$ receives a corresponding free Dirichilet parameter, while each topic indicator $z_{t,d,n}$ receives a corresponding free multinomial parameter $\phi_{t,d,n}$. To optimize the document topic proportion vectors we subsequently employ gradient ascent, however this is not necessary for the document level parameter updates as they simply have a closed form.
 
 %topic tracking
 Finally, we may track our variational parameters $\hat{\beta}$ and $\hat{\alpha}$  between time slices using either the Kalman filter or wavelet regression. For brevity we will not replicate the mechanics of these methods here and encourage the interested reader to refer to the derivations provided in detail in  \parencite{Blei:2006:DTM:1143844.1143859}.
@@ -208,31 +252,72 @@ Finally, we may track our variational parameters $\hat{\beta}$ and $\hat{\alpha}
 %addresses several latent structures in the document collection such as topic evolution and prevalence, however does not address the birth and death of topics, like models such as \cite{DBLP:journals/corr/abs-1203-3463}.
 
 %--------------------------------------------------------------------------------------
-%\section{DIM Model Overview} 
+\section{DIM Model Overview} 
+% Roadmap + Disclaimer
+In this section we provide an overview of the Dynamic Influence Model (\keyword{DIM}) following closely the derivation found in \parencite{icml2010_GerrishB10}. For brevity, we do not replicate all technical aspects of the model here and encourage the interested reader to examine the original paper for a complete exposition of the mechanics of the DIM.
 
-%language based approach to modeling the influence of documents.
-%useful when traditional bibliometrics such as citations are not available. produces an internal measure of document influence that has been shown to correlate with citations. Closely related to the DTM but with XXX.
+\subsection{DIM Purpose}
+Aside from generating thematic topics, the unique purpose of the DIM is to provide estimates of document influences on each of those topics. The novelty of the DIM lies in the fact that this influence measure is inferred solely from language use. This makes the DIM particularly useful when traditional bibliometrics such as citations are unavailable, and in such cases inferred document influences could act as a proxy as the two are known to correlate \parencite{icml2010_GerrishB10}. The quantitative estimate of a document's influence that DIM provides is valuable as it allows for more informed decisions about publishing and funding, and can help us assign 'value' to documents in an automated manner. 
 
-% important for decisions about publishing and funding
-% also relevant to know for scientists who should read important work in their field for good research practice
+\subsection{Encoding Influence}
+The DIM itself is a close relative to the DTM, as outlined above in section \ref{DTM}; it too consists of a series of individual LDA models connected via a Markov chain of term distribution parameters $\beta$. Naively we may describe the drift of this distribution as a stationary autoregressive process with transition variance $\sigma^2$, given by equation \ref{eq:naivechain}.
 
-%probability of a word given the natural parameters of the word distribution beta at time t
+\begin{align*}
+\beta_{t+1} | \beta_{t} \sim  \mathcal{N}(\beta_{t},\sigma^2I)
+\numberthis \label{eq:naivechain}
+\end{align*}
 
-%then we have as in the DTM a logistic normal markov chain
-%(its drift is a stationary autoregressive process)
+This in essence is the simplest form of the DTM, where we  compute the posterior distribution of our sequence of topics $\beta_{1:T}$ conditioned on the observed documents, and represent our corpus as a smooth trajectory of word frequencies.
 
-%central idea: some articles influence the topic more than others.
+However, with the DIM we wish to encode document influences into this model of topic drift. To do this we need a method of describing the probability of a word dependent on a set of natural parameters $\beta_t$. We write this probability as the softmax transformation of the unconstrained vector.
 
-%initialize normally distributed scalar influence scores $l_d$ to describe the influence article $d$ has on the topic. Higher influences mean a document had a larger affect on the drift of the topic.
+\begin{align*}
+p(w|\beta_t) \propto exp(\beta_{t,w})
+\end{align*}
+
+Additionally, we assign to each document $d$ a normally distributed scalar influence score $\ell_d$ that describes the influence of that document on a given topic. Where a higher influence score indicates that a document's words had a larger impact on the drift of this topic. Finally, we modify our naive Markov chain of term distributions from equation \ref{eq:naivechain} to relate the next epoch's set of natural parameters $\beta_{t+1}$ to the probability of words under the \emph{current} set of natural parameters $\beta_t$, and the influence score of each document $\ell_d$.
+
+\begin{align*}
+\beta_{t+1} | \beta_t,(w,\ell)_{t,1:D} \sim  \mathcal{N}(\beta_t + exp(-\beta_t)\sum_dw_{d,t}\ell_{t,d},\sigma^2I)
+\numberthis \label{eq:DIMchain}
+\end{align*}
+
+In this way, the words of a high influence document will have  a higher expected probability in the following time step. In effect, each topic's natural parameters are "nudged" by the words of each document in proportion to the influence score of that document. This is a core principle of the DIM, that not all documents exert the same force on the direction of a topic, some documents have a larger impact, a larger \emph{influence} on a given topic than others. As a result, an article whose words can help explain the way the word frequencies change will have a high posterior influence score.
+
+Something is still missing though, equation \ref{eq:DIMchain} only expresses the progression of natural parameters for a single topic. For multiple topics we generalize this expression to equation \ref{eq:DIMchainmulti}, defining $z_{d,n,k}$ as the indicator that the nth word in document d is assigned to topic k.
+
+\begin{align*}
+\beta_{k,t+1} | \beta_{k,t},(w,\ell, z)_{t,1:D} \sim  \mathcal{N}(\beta_{k,t} + exp(-\beta_{k,t})\sum_d \ell_{d,k} \sum_n w_{d,n}z_{d,n,k},\sigma^2I)
+\numberthis \label{eq:DIMchainmulti}
+\end{align*}
+
+Where to accommodate multiple topics we have kept the influence score of a document outside the summation over the possible indicator assignments. This yields the graphical model illustrated in figure \ref{fig:DIMGM}. If we compare this to the graphical model for the DTM present in figure \ref{fig:DTMGM} we can observe how the DIM differs. 
+
+Particularly, we no longer chain our document topic-proportions $\alpha$ between time steps; instead each epoch's corresponding LDA receives the same set. Additionally the topic term-distribution hyper parameters of a given timestep $\beta_{t}$ depend not only the previous timestep's params $\beta_{t-1}$ but also the indicators $z$, terms $w$, and influences $\ell$ of the past timestep. Together these differences constitute a significant enough change to create a noticable difference in results between the DIM and DTM, which we report in Chapter \ref{Chapter4}.
 
 
-%give equation of time series model
+\begin{figure}[ht]
+\centering
+\includegraphics[width=130mm,scale=0.45]{Figures/DIMGM}
+\caption[DTMGM]{Graphical model of the DIM. Note the increased number of dependencies for the term distribution parameters $\beta$ compared to that of the DTM.}
+\label{fig:DIMGM}
+\end{figure}
 
+\subsection{Inference with DIM}
 
-%word from documents of high influence will have a higher probability in the following time step while words from an article with zero influence will not affect the next time step. As with the dtm, once trained on our corpus the posterior of topic and influence scores gives gives a trajectory of term fre- quencies and a retrospective estimate of the influence of each article. An article whose words can help explain the way the word frequencies change will have a high posterior influence score
+Conducting inference with the DIM is largely similar to the DTM. Again, computing the exact posterior is intractable so we turn to variational methods to approximate it with a simpler distribution over latent variables. Here our latent variables are the sequence of topics and the per-document influence values, conditioned on an observed corpus. 
 
-%[image of the graphical model]
+Our simple approximation of the true posterior is given by equation \ref{eq:DIMvardist}, which we call our \emph{variational distribution}. To specify this variational distribution we introduce a set of free variational parameters which we fit to minimize the KL divergence between the variational distribution and the true posterior. 
 
+\begin{align*}
+q(\beta, \ell, Z, \theta | \widetilde{\beta},  \widetilde{\ell}, \phi, \gamma) = \prod_{k=1}^k q(\beta_{k,1:T} | \widetilde{\beta}_{K,1:T}) \\
+ \prod_{t=1}^T \prod_{d=1}^{D_{t}} q(\theta_{t,d} | \gamma_{t,d}) q(\ell_d | \widetilde{\ell}_d) \prod_{n=1}^{N_{t,d}} q(Z_{t,d,n} | \phi_{t,d,n})
+ \numberthis \label{eq:DIMvardist}
+\end{align*}
+
+The first such variables we introduce include the word assignments $z_n$ and topic proportions $\theta_d$ which are governed by multinomial parameters $\phi_d$ and Dirichilet parameters $\gamma_d$. Additionally, in order to govern the variational distribution for topic trajectories $\{  \beta_{k,1},...,\beta_{k,T}  \}$, described by a linear gaussian chain, we specify the set of parameters $\{  \widetilde{\beta}_{k,1},...,\widetilde{\beta}_{k,T}  \}$ to act as the "variational observations" of the chain. Finally, in order to describe the variational distribution of the document influence value $\ell_{d,k}$ as a Gaussian we introduce $\widetilde{\ell}_{d,k}$ representing the mean, and $\sigma^2_{\ell}$ representing the fixed variance. 
+
+Finaly, as stated above, we obtain estimates for these variational parameters by fitting our variational distribution, minimizing the KL divergence via gradient descent. It is here that we end our brief summary of the DIM. For more details such as parameter updates, and initial empirical results, we direct the interested reader to the full original exposition found in \parencite{icml2010_GerrishB10}.
 
 
 
